@@ -2,4 +2,16 @@
     <string name="app_name">SingleTeacherSchools</string>
     <string name="user_id">User ID</string>
     <string name="password">Password</string>
+    <string name="login_time">2017/03/13 01:54:00pm</string>
+    <string name="advisor_name">Advisor Name</string>
+    <string name="boys">Boys</string>
+    <string name="girls">Girls</string>
+    <string name="students_strength_actual">Students Strength Actual</string>
+    <string name="total">Total</string>
+    <string name="as_per_attendance">As per Attendance</string>
+    <string name="advisor_last_visit_on">Advisor Last Visit on</string>
+    <string name="last_visit_advisor">Last Visit Advisor</string>
+    <string name="enter_details_here">Enter details here</string>
+    <string name="advisor_report">Advisor Report</string>
+    <string name="login">Login</string>
 </resources>
