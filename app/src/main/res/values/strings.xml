@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SingleTeacherSchools</string>
+    <string name="user_id">User ID</string>
+    <string name="password">Password</string>
 </resources>
