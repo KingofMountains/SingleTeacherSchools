@@ -19,6 +19,8 @@ import java.io.IOException;
 
 public class CaptureFragment extends Fragment {
 
+    private static final String DIR_NAME = ".STS";
+    private static String DIR_PATH = "";
     View v;
     ImageView imgOne, imgTwo, imgThree, imgFour;
     private OnFragmentInteractionListener mListener;
@@ -40,6 +42,8 @@ public class CaptureFragment extends Fragment {
     }
 
     private void init() {
+
+        DIR_PATH = Environment.getExternalStorageDirectory() + File.separator + DIR_NAME + File.separator;
 
         imgOne = (ImageView) v.findViewById(R.id.imageView01);
         imgTwo = (ImageView) v.findViewById(R.id.imageView02);
@@ -95,9 +99,14 @@ public class CaptureFragment extends Fragment {
 
         if (requestCode == 101 && resultCode == Activity.RESULT_OK && null != data) {
 
+            long currentTimestamp = System.currentTimeMillis();
+
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+
             try {
-                File outFile = new File(Environment.getExternalStorageDirectory(), "test.jpeg");
+                File outFile = new File(DIR_PATH + "sts_image_" + currentTimestamp + ".png");
+                if (!outFile.exists())
+                    outFile.createNewFile();
                 FileOutputStream fos = new FileOutputStream(outFile);
                 photo.compress(Bitmap.CompressFormat.PNG, 100, fos);
                 fos.flush();
