@@ -1,0 +1,541 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.sts.singleteacherschool.FormFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/colorPrimary"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/txtLoginTime"
+                    style="@style/formEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/curvedborder_white"
+                    android:focusable="false"
+                    android:inputType="textPersonName"
+                    tools:text="@string/login_time"/>
+
+                <EditText
+                    android:id="@+id/txtAdvisorName"
+                    style="@style/formEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/curvedborder_white"
+                    android:focusable="false"
+                    android:inputType="textPersonName"
+                    tools:text="@string/advisor_name"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerSanchayat"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerVillage"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerAcharya"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/curvedborder_white"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/formTitleLabelStyle"
+                    android:layout_width="match_parent"
+                    android:text="@string/students_strength_actual"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="2dp">
+
+                    <TextView
+                        style="@style/formLabelStyle"
+                        android:layout_width="wrap_content"
+                        android:text="@string/boys"/>
+
+                    <EditText
+                        android:id="@+id/txtStrengthBoys"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:inputType="number"
+                        tools:text="10"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="2dp">
+
+                    <TextView
+                        style="@style/formLabelStyle"
+                        android:layout_width="wrap_content"
+                        android:text="@string/girls"/>
+
+                    <EditText
+                        android:id="@+id/txtStrengthGirls"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:inputType="number"
+                        tools:text="10"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="2dp">
+
+                    <TextView
+                        style="@style/formLabelStyle"
+                        android:layout_width="wrap_content"
+                        android:text="@string/total"/>
+
+                    <EditText
+                        android:id="@+id/txtStrengthTotal"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:focusable="false"
+                        tools:text="20"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/curvedborder_orange_light"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/formTitleLabelStyle"
+                    android:layout_width="match_parent"
+                    android:text="@string/as_per_attendance"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="2dp">
+
+                    <TextView
+                        style="@style/formLabelStyle"
+                        android:layout_width="wrap_content"
+                        android:text="@string/boys"/>
+
+                    <EditText
+                        android:id="@+id/txtAttendanceBoys"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:inputType="textPersonName"
+                        tools:text="10"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="2dp">
+
+                    <TextView
+                        style="@style/formLabelStyle"
+                        android:layout_width="wrap_content"
+                        android:text="@string/girls"/>
+
+                    <EditText
+                        android:id="@+id/txtAttendanceGirls"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:inputType="textPersonName"
+                        tools:text="10"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingRight="2dp">
+
+                    <TextView
+                        style="@style/formLabelStyle"
+                        android:layout_width="wrap_content"
+                        android:text="@string/total"/>
+
+                    <EditText
+                        android:id="@+id/txtAttendanceTotal"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        tools:text="20"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="1dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerUniform"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerBlackBoard"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerCorporate"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerMats"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerSolorLamp"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerCharts"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerSyllabus"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerLibrary"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <Spinner
+                        android:id="@+id/spinnerMedicine"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/curvedborder_white"/>
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_margin="2dp"
+                        android:src="@drawable/spinner_down"/>
+
+                </FrameLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/activity_horizontal_margin"
+                android:background="@drawable/curvedborder_orange_light"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/txtDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/curvedborder_orange_light"
+                    android:gravity="start"
+                    android:hint="@string/enter_details_here"
+                    android:padding="6dp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/formLabelStyle"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/advisor_last_visit_on"/>
+
+                    <EditText
+                        android:id="@+id/txtAdvisorLastVisit"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:focusable="false"
+                        tools:text="@string/login_time"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/formLabelStyle"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/last_visit_advisor"/>
+
+                    <EditText
+                        android:id="@+id/txtLastVisitAdvisor"
+                        style="@style/formEditTextStyle"
+                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:focusable="false"
+                        android:inputType="textPersonName"
+                        tools:text="@string/advisor_name"/>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnContinue"
+                style="@style/loginLabelStyle"
+                android:layout_width="match_parent"
+                android:background="@drawable/curvedborder_white"
+                android:text="@string/continue_text"
+                android:textColor="@color/colorPrimaryDark"/>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
