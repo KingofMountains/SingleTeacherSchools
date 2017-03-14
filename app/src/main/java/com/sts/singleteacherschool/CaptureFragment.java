@@ -1,14 +1,26 @@
 package com.sts.singleteacherschool;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class CaptureFragment extends Fragment {
 
+    View v;
+    ImageView imgOne, imgTwo, imgThree, imgFour;
     private OnFragmentInteractionListener mListener;
 
     public CaptureFragment() {
@@ -21,15 +33,34 @@ public class CaptureFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_capture, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.fragment_capture, container, false);
+        init();
+        return v;
     }
 
-    public void onSubmitPressed() {
-        if (mListener != null) {
-            mListener.onFragmentInteraction("submit");
-        }
+    private void init() {
+
+        imgOne = (ImageView) v.findViewById(R.id.imageView01);
+        imgTwo = (ImageView) v.findViewById(R.id.imageView02);
+        imgThree = (ImageView) v.findViewById(R.id.imageView03);
+        imgFour = (ImageView) v.findViewById(R.id.imageView04);
+
+        imgOne.setOnClickListener(new OnImageClick());
+        imgTwo.setOnClickListener(new OnImageClick());
+        imgThree.setOnClickListener(new OnImageClick());
+        imgFour.setOnClickListener(new OnImageClick());
+
+        v.findViewById(R.id.btnSubmit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null) {
+                    mListener.onFragmentInteraction("submit");
+                }
+            }
+        });
     }
+
 
     @Override
     public void onAttach(Context context) {
@@ -37,7 +68,18 @@ public class CaptureFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-            throw new RuntimeException(context.toString()+ " must implement OnFragmentInteractionListener");
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void onAttach(Activity context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -47,4 +89,30 @@ public class CaptureFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 101 && resultCode == Activity.RESULT_OK && null != data) {
+
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            try {
+                File outFile = new File(Environment.getExternalStorageDirectory(), "test.jpeg");
+                FileOutputStream fos = new FileOutputStream(outFile);
+                photo.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.flush();
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private class OnImageClick implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            getActivity().startActivityFromFragment(CaptureFragment.this, cameraIntent, 101);
+        }
+    }
 }
