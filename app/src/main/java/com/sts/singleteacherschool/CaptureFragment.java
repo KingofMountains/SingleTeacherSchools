@@ -17,13 +17,17 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static com.sts.singleteacherschool.MainActivity.data;
+
 public class CaptureFragment extends Fragment {
 
     private static final String DIR_NAME = ".STS";
+    private static String FILE_PATH = "";
     private static String DIR_PATH = "";
     View v;
     ImageView imgOne, imgTwo, imgThree, imgFour;
     private OnFragmentInteractionListener mListener;
+    private int clickedImage = 0;
 
     public CaptureFragment() {
         // Required empty public constructor
@@ -59,7 +63,7 @@ public class CaptureFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onFragmentInteraction("submit");
+                    mListener.onFragmentInteraction("submit", data);
                 }
             }
         });
@@ -100,26 +104,52 @@ public class CaptureFragment extends Fragment {
         if (requestCode == 101 && resultCode == Activity.RESULT_OK && null != data) {
 
             long currentTimestamp = System.currentTimeMillis();
-
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            FILE_PATH = DIR_PATH + "sts_image_" + currentTimestamp + ".png";
+            Bitmap photo = data.getExtras().getParcelable("data");
 
             try {
-                File outFile = new File(DIR_PATH + "sts_image_" + currentTimestamp + ".png");
+                File outFile = new File(FILE_PATH);
                 if (!outFile.exists())
                     outFile.createNewFile();
                 FileOutputStream fos = new FileOutputStream(outFile);
                 photo.compress(Bitmap.CompressFormat.PNG, 100, fos);
                 fos.flush();
                 fos.close();
+                setImageToImageView(photo);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
+    }
+
+    private void setImageToImageView(Bitmap photo) {
+        switch (clickedImage) {
+            case R.id.imageView01:
+                imgOne.setImageBitmap(photo);
+                data.imageone = FILE_PATH;
+                break;
+            case R.id.imageView02:
+                imgTwo.setImageBitmap(photo);
+                data.imagetwo = FILE_PATH;
+                break;
+            case R.id.imageView03:
+                imgThree.setImageBitmap(photo);
+                data.imagethree = FILE_PATH;
+                break;
+            case R.id.imageView04:
+                imgFour.setImageBitmap(photo);
+                data.imagefour = FILE_PATH;
+                break;
+        }
+        clickedImage = 0;
+        FILE_PATH = "";
     }
 
     private class OnImageClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
+            clickedImage = v.getId();
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             getActivity().startActivityFromFragment(CaptureFragment.this, cameraIntent, 101);
         }

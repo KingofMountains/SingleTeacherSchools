@@ -8,13 +8,14 @@ import android.support.v7.app.AppCompatActivity;
 import java.io.File;
 
 public class SplashActivity extends AppCompatActivity {
-
+    File image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        File image = new File(Environment.getExternalStorageDirectory(), "/.STS");
+        image = new File(Environment.getExternalStorageDirectory(), "/.STS");
+
         if (!image.exists()) {
             image.mkdirs();
         }

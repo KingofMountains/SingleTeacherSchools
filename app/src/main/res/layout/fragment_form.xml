@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.sts.singleteacherschool.FormFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sts.singleteacherschool.FormFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
                     android:background="@drawable/curvedborder_white"
                     android:focusable="false"
                     android:inputType="textPersonName"
-                    tools:text="@string/login_time"/>
+                    tools:text="@string/login_time" />
 
                 <EditText
                     android:id="@+id/txtAdvisorName"
@@ -42,7 +42,7 @@
                     android:background="@drawable/curvedborder_white"
                     android:focusable="false"
                     android:inputType="textPersonName"
-                    tools:text="@string/advisor_name"/>
+                    tools:text="@string/advisor_name" />
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -52,14 +52,14 @@
                         android:id="@+id/spinnerSanchayat"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -72,15 +72,15 @@
                         android:id="@+id/spinnerVillage"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -92,15 +92,15 @@
                         android:id="@+id/spinnerAcharya"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -118,7 +118,7 @@
                 <TextView
                     style="@style/formTitleLabelStyle"
                     android:layout_width="match_parent"
-                    android:text="@string/students_strength_actual"/>
+                    android:text="@string/students_strength_actual" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -129,7 +129,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/boys"/>
+                        android:text="@string/boys" />
 
                     <EditText
                         android:id="@+id/txtStrengthBoys"
@@ -137,7 +137,8 @@
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
-                        tools:text="10"/>
+                        android:maxLength="100"
+                        tools:text="10" />
 
                 </LinearLayout>
 
@@ -150,7 +151,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/girls"/>
+                        android:text="@string/girls" />
 
                     <EditText
                         android:id="@+id/txtStrengthGirls"
@@ -158,7 +159,8 @@
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
-                        tools:text="10"/>
+                        android:maxLength="100"
+                        tools:text="10" />
 
                 </LinearLayout>
 
@@ -171,7 +173,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/total"/>
+                        android:text="@string/total" />
 
                     <EditText
                         android:id="@+id/txtStrengthTotal"
@@ -179,8 +181,7 @@
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
                         android:focusable="false"
-                        tools:text="20"
-                        />
+                        tools:text="20" />
 
                 </LinearLayout>
 
@@ -198,7 +199,7 @@
                     android:id="@+id/textView"
                     style="@style/formTitleLabelStyle"
                     android:layout_width="match_parent"
-                    android:text="@string/as_per_attendance"/>
+                    android:text="@string/as_per_attendance" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -209,15 +210,16 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/boys"/>
+                        android:text="@string/boys" />
 
                     <EditText
                         android:id="@+id/txtAttendanceBoys"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
-                        android:inputType="textPersonName"
-                        tools:text="10"/>
+                        android:inputType="number"
+                        android:maxLength="100"
+                        tools:text="10" />
 
                 </LinearLayout>
 
@@ -230,15 +232,16 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/girls"/>
+                        android:text="@string/girls" />
 
                     <EditText
                         android:id="@+id/txtAttendanceGirls"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
-                        android:inputType="textPersonName"
-                        tools:text="10"/>
+                        android:inputType="number"
+                        android:maxLength="100"
+                        tools:text="10" />
 
                 </LinearLayout>
 
@@ -251,7 +254,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/total"/>
+                        android:text="@string/total" />
 
                     <EditText
                         android:id="@+id/txtAttendanceTotal"
@@ -260,7 +263,7 @@
                         android:background="@drawable/curvedborder_orange_light"
                         android:focusable="false"
                         android:inputType="textPersonName"
-                        tools:text="20"/>
+                        tools:text="20" />
 
                 </LinearLayout>
 
@@ -283,14 +286,16 @@
                         android:id="@+id/spinnerUniform"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/uniform"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -303,15 +308,17 @@
                         android:id="@+id/spinnerBlackBoard"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/blackboard"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -323,15 +330,17 @@
                         android:id="@+id/spinnerCorporate"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/corporate"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -343,15 +352,17 @@
                         android:id="@+id/spinnerMats"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/mats"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -360,18 +371,20 @@
                     android:layout_height="wrap_content">
 
                     <Spinner
-                        android:id="@+id/spinnerSolorLamp"
+                        android:id="@+id/spinnerSolarLamp"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/solar"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -383,15 +396,17 @@
                         android:id="@+id/spinnerCharts"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/charts"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -403,15 +418,17 @@
                         android:id="@+id/spinnerSyllabus"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/syllabus"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -423,15 +440,17 @@
                         android:id="@+id/spinnerLibrary"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/library"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -443,15 +462,17 @@
                         android:id="@+id/spinnerMedicine"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"/>
+                        android:background="@drawable/curvedborder_white"
+                        android:entries="@array/medicine"
+                        tools:listitem="@android:layout/simple_spinner_item" />
 
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_margin="2dp"
-                        android:src="@drawable/spinner_down"/>
+                        android:layout_margin="3dp"
+                        android:src="@drawable/spinner_down" />
 
                 </FrameLayout>
 
@@ -475,7 +496,9 @@
                     android:background="@drawable/curvedborder_orange_light"
                     android:gravity="start"
                     android:hint="@string/enter_details_here"
-                    android:padding="6dp"/>
+                    android:inputType="text"
+                    android:maxLength="255"
+                    android:padding="6dp" />
 
 
                 <LinearLayout
@@ -488,7 +511,7 @@
                         style="@style/formLabelStyle"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:text="@string/advisor_last_visit_on"/>
+                        android:text="@string/advisor_last_visit_on" />
 
                     <EditText
                         android:id="@+id/txtAdvisorLastVisit"
@@ -497,8 +520,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/curvedborder_orange_light"
                         android:focusable="false"
-                        tools:text="@string/login_time"
-                        />
+                        tools:text="@string/login_time" />
 
                 </LinearLayout>
 
@@ -511,7 +533,7 @@
                         style="@style/formLabelStyle"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:text="@string/last_visit_advisor"/>
+                        android:text="@string/last_visit_advisor" />
 
                     <EditText
                         android:id="@+id/txtLastVisitAdvisor"
@@ -521,7 +543,7 @@
                         android:background="@drawable/curvedborder_orange_light"
                         android:focusable="false"
                         android:inputType="textPersonName"
-                        tools:text="@string/advisor_name"/>
+                        tools:text="@string/advisor_name" />
 
                 </LinearLayout>
 
@@ -534,7 +556,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/curvedborder_white"
                 android:text="@string/continue_text"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/colorPrimaryDark" />
         </LinearLayout>
     </ScrollView>
 

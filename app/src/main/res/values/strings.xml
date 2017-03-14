@@ -20,4 +20,63 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_images">Add Images</string>
     <string name="submit">Submit</string>
+
+    <string-array name="uniform">
+        <item>Acharya in Uniform</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="blackboard">
+        <item>Black board</item>
+        <item>Available</item>
+        <item>Damaged</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="corporate">
+        <item>Corporate Name Board</item>
+        <item>Fixed</item>
+        <item>No</item>
+        <item>Not in Corporate</item>
+    </string-array>
+
+    <string-array name="mats">
+        <item>Mats</item>
+        <item>Available</item>
+        <item>Damaged</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="solar">
+        <item>Solar Lamp</item>
+        <item>Available</item>
+        <item>No</item>
+        <item>Given for Repair</item>
+    </string-array>
+
+    <string-array name="charts">
+        <item>Charts</item>
+        <item>Available</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="syllabus">
+        <item>Syllabus</item>
+        <item>Following</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="library">
+        <item>Library Books</item>
+        <item>Available Using</item>
+        <item>No</item>
+    </string-array>
+
+    <string-array name="medicine">
+        <item>Medicine</item>
+        <item>Available Giving</item>
+        <item>No</item>
+    </string-array>
+
 </resources>
