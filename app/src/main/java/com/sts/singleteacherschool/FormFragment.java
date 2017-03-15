@@ -75,7 +75,7 @@ public class FormFragment extends Fragment {
                     data.boysAttendanceStrength = txtBoysAttendance.getText().toString().trim();
                     data.girlsAttendanceStrength = txtGirlsAttendance.getText().toString().trim();
                     data.totalAttendanceStrength = txtTotalAttendance.getText().toString().trim();
-                    mListener.onFragmentInteraction("continue", data);
+                    mListener.onFragmentInteraction("continue");
                 }
             }
         });

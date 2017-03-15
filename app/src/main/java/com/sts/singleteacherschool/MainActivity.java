@@ -23,11 +23,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     }
 
     @Override
-    public void onFragmentInteraction(String from, Report data) {
+    public void onFragmentInteraction(String from) {
 
         switch (from){
             case "continue":
-                loadCaptureFragment(data);
+                loadCaptureFragment();
                 break;
             case "submit":
                 submitReport();
@@ -39,12 +39,12 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
         Toast.makeText(thisActivity, "Report Submitted Successfully!", Toast.LENGTH_SHORT).show();
     }
 
-    private void loadCaptureFragment(Report data) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.frmContainer, CaptureFragment.newInstance(), "capture").commit();
+    private void loadCaptureFragment() {
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, 0).replace(R.id.frmContainer, CaptureFragment.newInstance(), "capture").commit();
     }
 
     private void loadFormFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.frmContainer, FormFragment.newInstance(), "entry").commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.slide_in_right, 0).replace(R.id.frmContainer, FormFragment.newInstance(), "entry").commit();
     }
 
 

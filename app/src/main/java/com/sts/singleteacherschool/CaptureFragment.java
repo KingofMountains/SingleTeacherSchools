@@ -63,7 +63,7 @@ public class CaptureFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mListener != null) {
-                    mListener.onFragmentInteraction("submit", data);
+                    mListener.onFragmentInteraction("submit");
                 }
             }
         });

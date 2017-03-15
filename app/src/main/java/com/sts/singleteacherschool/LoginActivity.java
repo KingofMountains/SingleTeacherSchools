@@ -14,7 +14,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLogin(View view) {
-        finish();
         startActivity(new Intent(this,MainActivity.class));
+        overridePendingTransition(0, R.anim.slide_out_left);
+        finish();
     }
 }
