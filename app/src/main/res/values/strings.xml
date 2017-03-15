@@ -20,6 +20,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_images">Add Images</string>
     <string name="submit">Submit</string>
+    <string name="get_all_report">http://www.webmyls.com/sts/get_all_adv_report.php</string>
+    <string name="get_advisor_village_sanch_acharya">http://www.webmyls.com/sts/get_advisor_village_sanch_acharya.php</string>
 
     <string-array name="uniform">
         <item>Acharya in Uniform</item>

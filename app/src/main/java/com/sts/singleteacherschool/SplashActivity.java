@@ -1,14 +1,33 @@
 package com.sts.singleteacherschool;
 
+import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.sts.singleteacherschool.Data.DatabaseHelper;
+import com.sts.singleteacherschool.Network.VolleySingleton;
+import com.sts.singleteacherschool.Utilities.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 
 public class SplashActivity extends AppCompatActivity {
     File image;
+    RequestQueue queue;
+    ProgressDialog loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,29 +35,180 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         image = new File(Environment.getExternalStorageDirectory(), "/.STS");
+        queue = VolleySingleton.getInstance(this).getRequestQueue();
 
         if (!image.exists()) {
             image.mkdirs();
         }
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
+        if(Utils.hasInternet(this)) {
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-                            finish();
+
+                            String url = getString(R.string.get_advisor_village_sanch_acharya);
+                            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            new GetAllDetailsTask().execute(response);
+                                        }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+
+                                }
+                            });
+
+                            loading = ProgressDialog.show(SplashActivity.this, "", "Loading..", false);
+
+                            queue.add(stringRequest);
+
                         }
                     });
+
                 }
+            }).start();
+        } else {
+            loadLoginActivity();
+        }
+    }
+
+    class GetAllDetailsTask extends AsyncTask<String, String, Integer> {
+
+        DatabaseHelper dbHelper;
+        SQLiteDatabase db;
+
+        @Override
+        protected Integer doInBackground(String... params) {
+
+            System.out.println("response ------- "+params[0]);
+
+            dbHelper = new DatabaseHelper(SplashActivity.this);
+            db = dbHelper.getWritableDatabase();
+
+            db.execSQL("delete from advisor");
+            db.execSQL("delete from village");
+            db.execSQL("delete from sanch");
+            db.execSQL("delete from acharya");
+
+            try {
+                JSONObject resp = new JSONObject(params[0]);
+
+                if (resp.has("advisor")) {
+
+                    JSONArray advisors = resp.getJSONArray("advisor");
+
+                    for (int i = 0; i < advisors.length(); i++) {
+
+                        JSONObject obj = advisors.getJSONObject(i);
+                        ContentValues values = new ContentValues();
+                        values.clear();
+
+                        values.put("user_id", obj.getString("user_id"));
+                        values.put("password", obj.getString("password"));
+                        values.put("name", obj.getString("name"));
+                        values.put("designation", obj.getString("designation"));
+                        values.put("sanch_id", obj.getString("sanch_id"));
+                        values.put("live_id", obj.getString("live_id"));
+                        values.put("session_id", obj.getString("session_id"));
+                        values.put("session_date", obj.getString("session_date"));
+
+                        db.insert("advisor", null, values);
+                    }
+
+                }
+
+                if (resp.has("village")) {
+
+                    JSONArray village = resp.getJSONArray("village");
+
+                    for (int i = 0; i < village.length(); i++) {
+
+                        JSONObject obj = village.getJSONObject(i);
+                        ContentValues values = new ContentValues();
+                        values.clear();
+
+                        values.put("id", obj.getString("id"));
+                        values.put("village_name", obj.getString("village_name"));
+                        values.put("sanch_id", obj.getString("sanch_id"));
+                        values.put("live_id", obj.getString("live_id"));
+
+                        db.insert("village", null, values);
+                    }
+
+                }
+
+                if (resp.has("sanch")) {
+
+                    JSONArray sanch = resp.getJSONArray("sanch");
+
+                    for (int i = 0; i < sanch.length(); i++) {
+
+                        JSONObject obj = sanch.getJSONObject(i);
+                        ContentValues values = new ContentValues();
+                        values.clear();
+
+                        values.put("id", obj.getString("id"));
+                        values.put("sanch_name", obj.getString("sanch_name"));
+                        values.put("live_id", obj.getString("live_id"));
+
+                        db.insert("sanch", null, values);
+                    }
+
+                }
+
+                if (resp.has("acharya")) {
+
+                    JSONArray acharya = resp.getJSONArray("acharya");
+
+                    for (int i = 0; i < acharya.length(); i++) {
+
+                        JSONObject obj = acharya.getJSONObject(i);
+                        ContentValues values = new ContentValues();
+                        values.clear();
+
+                        values.put("id", obj.getString("id"));
+                        values.put("acharya_name", obj.getString("acharya_name"));
+                        values.put("sanch_id", obj.getString("sanch_id"));
+                        values.put("village_name", obj.getString("village_name"));
+                        values.put("village_id", obj.getString("village_id"));
+                        values.put("live_id", obj.getString("live_id"));
+
+                        db.insert("acharya", null, values);
+                    }
+
+                }
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        }).start();
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+            if (loading != null && loading.isShowing()) {
+                loading.dismiss();
+            }
+
+            dbHelper.close();
+
+            loadLoginActivity();
+        }
+    }
+
+    private void loadLoginActivity() {
+        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        finish();
     }
 }

@@ -2,6 +2,8 @@ package com.sts.singleteacherschool;
 
 import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -14,11 +16,23 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import com.sts.singleteacherschool.Data.Acharya;
+import com.sts.singleteacherschool.Data.DatabaseHelper;
+import com.sts.singleteacherschool.Data.Sanchayat;
+import com.sts.singleteacherschool.Data.Village;
+import com.sts.singleteacherschool.Utilities.Preferences;
+import com.sts.singleteacherschool.Utilities.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static com.sts.singleteacherschool.MainActivity.data;
+
 public class FormFragment extends Fragment {
 
+    List<Sanchayat> sanchayatArrayList = new ArrayList<>();
+    List<Village> villageArrayList = new ArrayList<>();
+    List<Acharya> acharyaArrayList = new ArrayList<>();
     List<String> sanchayatArray = new ArrayList<>();
     List<String> villageArray = new ArrayList<>();
     List<String> acharyaArray = new ArrayList<>();
@@ -32,6 +46,9 @@ public class FormFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     EditText txtDescription, txtBoysActual, txtGirlsActual, txtBoysAttendance, txtGirlsAttendance, txtLoggedinTime, txtAdvisorName, txtTotalActual, txtTotalAttendance, txtAdvisorLastVisited, getTxtAdvisorLastVisitedTime;
+
+    DatabaseHelper dbHelper;
+    SQLiteDatabase db;
 
     public FormFragment() {
         // Required empty public constructor
@@ -62,7 +79,10 @@ public class FormFragment extends Fragment {
 
         initializeSpinners();
 
-        getValuesFromDB();
+        dbHelper = new DatabaseHelper(thisActivity);
+        db = dbHelper.getWritableDatabase();
+
+        getSanchayat();
 
         v.findViewById(R.id.btnContinue).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,7 +102,58 @@ public class FormFragment extends Fragment {
 
     }
 
-    private void getValuesFromDB() {
+    private void getSanchayat() {
+
+        Cursor cursor = db.rawQuery("select * from sanch where id = " + Preferences.geAdvisorSanchayatID(thisActivity) + " and live_id = 1 ", null);
+
+        sanchayatArray.clear();
+        sanchayatArray.add("Name of Sanchayat");
+
+        while (cursor.moveToNext()) {
+
+            Sanchayat data = new Sanchayat();
+            data.id = cursor.getString(cursor.getColumnIndex("id"));
+            data.sanch_name = cursor.getString(cursor.getColumnIndex("sanch_name"));
+            sanchayatArrayList.add(data);
+            sanchayatArray.add(data.sanch_name);
+        }
+    }
+
+
+    private void getVillage(String sanchID) {
+
+        Cursor cursor = db.rawQuery("select * from village where sanch_id = " + sanchID + " and live_id = 1 ", null);
+
+        villageArray.clear();
+        villageArray.add("Name of Village");
+
+        while (cursor.moveToNext()) {
+
+            Village data = new Village();
+            data.id = cursor.getString(cursor.getColumnIndex("id"));
+            data.village_name = cursor.getString(cursor.getColumnIndex("village_name"));
+            villageArrayList.add(data);
+            villageArray.add(data.village_name);
+        }
+
+    }
+
+
+    private void getAcharya(String villageID) {
+
+        Cursor cursor = db.rawQuery("select * from acharya where village_id = " + villageID + " and live_id = 1 ", null);
+
+        acharyaArray.clear();
+        acharyaArray.add("Name of Acharya");
+
+        while (cursor.moveToNext()) {
+
+            Acharya data = new Acharya();
+            data.id = cursor.getString(cursor.getColumnIndex("id"));
+            data.acharya_name = cursor.getString(cursor.getColumnIndex("acharya_name"));
+            acharyaArrayList.add(data);
+            acharyaArray.add(data.acharya_name);
+        }
 
     }
 
@@ -103,6 +174,9 @@ public class FormFragment extends Fragment {
         txtGirlsActual.addTextChangedListener(new StudentCountWatcher());
         txtBoysAttendance.addTextChangedListener(new StudentCountWatcher());
         txtGirlsAttendance.addTextChangedListener(new StudentCountWatcher());
+
+        txtAdvisorName.setText(Preferences.getAdvisorName(thisActivity));
+        txtLoggedinTime.setText(Utils.getDate(System.currentTimeMillis()));
 
     }
 
@@ -133,6 +207,10 @@ public class FormFragment extends Fragment {
         spinnerSyllabus.setOnItemSelectedListener(new OnSpinnerItemSelected());
         spinnerLibraryBooks.setOnItemSelectedListener(new OnSpinnerItemSelected());
         spinnerMedicine.setOnItemSelectedListener(new OnSpinnerItemSelected());
+
+        sanchayatArray.add("Name of Sanchayat");
+        villageArray.add("Name of Village");
+        acharyaArray.add("Name of Acharya");
 
         adapterSanchayat = new ArrayAdapter(thisActivity, android.R.layout.simple_list_item_1, sanchayatArray);
         adapterSanchayat.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -179,24 +257,33 @@ public class FormFragment extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-            System.out.println("view --------- " + view.toString());
-            System.out.println("position --------- " + position);
-            System.out.println("id --------- " + id);
-
             String selectedItem = parent.getItemAtPosition(position).toString();
 
             switch (parent.getId()) {
                 case R.id.spinnerAcharya:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Name of Sanchayat")) {
                         data.acharyaName = selectedItem;
+                    } else {
+                        data.acharyaName = "";
+                    }
                     break;
                 case R.id.spinnerVillage:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Name of Village")) {
+                        String villageID = villageArrayList.get(position - 1).id;
                         data.villageName = selectedItem;
+                        getAcharya(villageID);
+                    } else {
+                        data.villageName = "";
+                    }
                     break;
                 case R.id.spinnerSanchayat:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Name of Sanchayat")) {
+                        String sanchID = sanchayatArrayList.get(position - 1).id;
                         data.sanchayatName = selectedItem;
+                        getVillage(sanchID);
+                    } else {
+                        data.sanchayatName = "";
+                    }
                     break;
                 case R.id.spinnerUniform:
                     if (!selectedItem.equalsIgnoreCase(""))

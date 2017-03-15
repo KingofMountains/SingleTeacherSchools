@@ -3,6 +3,10 @@ package com.sts.singleteacherschool.Utilities;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.text.format.DateFormat;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 public class Utils {
 
@@ -15,6 +19,13 @@ public class Utils {
             return true;
         }
         return true;
+    }
+
+    public static String getDate(long time) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(time);
+        String date = DateFormat.format("yyyy/MM/dd hh:mm:ss aa", cal).toString();
+        return date;
     }
 
 }
