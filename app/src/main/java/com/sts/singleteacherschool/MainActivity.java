@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
     private void submitReport() {
 //        Toast.makeText(thisActivity, "Report Submitted Successfully!", Toast.LENGTH_SHORT).show();
 
+        data.loggedOutTime = Utils.getDate(System.currentTimeMillis());
+
         final Map<String, String> images = new HashMap<>();
         if (!data.imageone.equalsIgnoreCase("")) {
             images.put("one", data.imageone);
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             images.put("four", data.imagefour);
         }
 
-        if (images.size() > 0) {
+        if (images.size() == 4) {
 
             for (final Map.Entry<String, String> e1 : images.entrySet()) {
 
@@ -193,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements OnFragmentInterac
             }
 
         } else {
-            Toast.makeText(thisActivity, "Select atleast one image", Toast.LENGTH_SHORT).show();
+            Utils.showAlert(thisActivity, "Please select all images");
             dialog.dismiss();
         }
 

@@ -45,7 +45,7 @@ public class FormFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    EditText txtDescription, txtBoysActual, txtGirlsActual, txtBoysAttendance, txtGirlsAttendance, txtLoggedinTime, txtAdvisorName, txtTotalActual, txtTotalAttendance, txtAdvisorLastVisited, getTxtAdvisorLastVisitedTime;
+    EditText txtDescription, txtBoysActual, txtGirlsActual, txtBoysAttendance, txtGirlsAttendance, txtLoggedinTime, txtAdvisorName, txtTotalActual, txtTotalAttendance, txtAdvisorLastVisited, txtAdvisorLastVisitedTime;
 
     DatabaseHelper dbHelper;
     SQLiteDatabase db;
@@ -95,11 +95,71 @@ public class FormFragment extends Fragment {
                     data.boysAttendanceStrength = txtBoysAttendance.getText().toString().trim();
                     data.girlsAttendanceStrength = txtGirlsAttendance.getText().toString().trim();
                     data.totalAttendanceStrength = txtTotalAttendance.getText().toString().trim();
-                    mListener.onFragmentInteraction("continue");
+
+                    if (allValuesEntered())
+                        mListener.onFragmentInteraction("continue");
                 }
             }
         });
 
+    }
+
+    private boolean allValuesEntered() {
+
+        if (data.sanchayatName.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select Sanch Name");
+            return false;
+        } else if (data.villageName.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select Village Name");
+            return false;
+        } else if (data.acharyaName.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select Acharya Name");
+            return false;
+        } else if (data.boysActualStrength.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please enter boys actual strength");
+            return false;
+        } else if (data.girlsActualStrength.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please enter girls actual strength");
+            return false;
+        } else if (data.boysAttendanceStrength.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please enter boys attendance strength");
+            return false;
+        } else if (data.girlsAttendanceStrength.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please enter girls attendance strength");
+            return false;
+        } else if (data.uniform.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select uniform details");
+            return false;
+        } else if (data.blackboard.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select blackboard details");
+            return false;
+        } else if (data.corporate.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select corporate details");
+            return false;
+        } else if (data.mats.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select mats details");
+            return false;
+        } else if (data.solarlamp.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select solar lamp details");
+            return false;
+        } else if (data.charts.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select charts details");
+            return false;
+        } else if (data.syllabus.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select syllabus details");
+            return false;
+        } else if (data.library.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select library books details");
+            return false;
+        } else if (data.medicine.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please select medicine details");
+            return false;
+        } else if (data.description.equalsIgnoreCase("")) {
+            Utils.showAlert(thisActivity, "Please enter details");
+            txtDescription.setText("");
+            return false;
+        }
+        return true;
     }
 
     private void getSanchayat() {
@@ -107,7 +167,7 @@ public class FormFragment extends Fragment {
         Cursor cursor = db.rawQuery("select * from sanch where id = " + Preferences.geAdvisorSanchayatID(thisActivity) + " and live_id = 1 ", null);
 
         sanchayatArray.clear();
-        sanchayatArray.add("Name of Sanchayat");
+        sanchayatArray.add("Name of Sanch");
 
         while (cursor.moveToNext()) {
 
@@ -167,7 +227,7 @@ public class FormFragment extends Fragment {
         txtGirlsAttendance = (EditText) v.findViewById(R.id.txtAttendanceGirls);
         txtTotalAttendance = (EditText) v.findViewById(R.id.txtAttendanceTotal);
         txtDescription = (EditText) v.findViewById(R.id.txtDetails);
-        getTxtAdvisorLastVisitedTime = (EditText) v.findViewById(R.id.txtAdvisorLastVisit);
+        txtAdvisorLastVisitedTime = (EditText) v.findViewById(R.id.txtAdvisorLastVisit);
         txtAdvisorLastVisited = (EditText) v.findViewById(R.id.txtLastVisitAdvisor);
 
         txtBoysActual.addTextChangedListener(new StudentCountWatcher());
@@ -176,7 +236,9 @@ public class FormFragment extends Fragment {
         txtGirlsAttendance.addTextChangedListener(new StudentCountWatcher());
 
         txtAdvisorName.setText(Preferences.getAdvisorName(thisActivity));
-        txtLoggedinTime.setText(Utils.getDate(System.currentTimeMillis()));
+        String date = Utils.getDate(System.currentTimeMillis());
+        txtLoggedinTime.setText(date);
+        data.loggedInTime = date;
 
     }
 
@@ -208,7 +270,7 @@ public class FormFragment extends Fragment {
         spinnerLibraryBooks.setOnItemSelectedListener(new OnSpinnerItemSelected());
         spinnerMedicine.setOnItemSelectedListener(new OnSpinnerItemSelected());
 
-        sanchayatArray.add("Name of Sanchayat");
+        sanchayatArray.add("Name of Sanch");
         villageArray.add("Name of Village");
         acharyaArray.add("Name of Acharya");
 
@@ -261,7 +323,7 @@ public class FormFragment extends Fragment {
 
             switch (parent.getId()) {
                 case R.id.spinnerAcharya:
-                    if (!selectedItem.equalsIgnoreCase("Name of Sanchayat")) {
+                    if (!selectedItem.equalsIgnoreCase("Name of Acharya")) {
                         data.acharyaName = selectedItem;
                     } else {
                         data.acharyaName = "";
@@ -278,7 +340,7 @@ public class FormFragment extends Fragment {
                     }
                     break;
                 case R.id.spinnerSanchayat:
-                    if (!selectedItem.equalsIgnoreCase("Name of Sanchayat")) {
+                    if (!selectedItem.equalsIgnoreCase("Name of Sanch")) {
                         String sanchID = sanchayatArrayList.get(position - 1).id;
                         data.sanchayatName = selectedItem;
                         getVillage(sanchID);
@@ -287,40 +349,67 @@ public class FormFragment extends Fragment {
                     }
                     break;
                 case R.id.spinnerUniform:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Acharya in Uniform")) {
                         data.uniform = selectedItem;
+                    } else {
+                        data.uniform = "";
+                    }
                     break;
                 case R.id.spinnerBlackBoard:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Black board")) {
                         data.blackboard = selectedItem;
+                    } else {
+                        data.blackboard = "";
+                    }
                     break;
                 case R.id.spinnerCorporate:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Corporate Name Board")) {
                         data.corporate = selectedItem;
+                    } else {
+                        data.corporate = "";
+                    }
                     break;
                 case R.id.spinnerMats:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Mats")) {
                         data.mats = selectedItem;
+                    } else {
+                        data.mats = "";
+                    }
                     break;
                 case R.id.spinnerSolarLamp:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Solar Lamp")) {
                         data.solarlamp = selectedItem;
+                    } else {
+                        data.solarlamp = "";
+                    }
                     break;
                 case R.id.spinnerCharts:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Charts")) {
                         data.charts = selectedItem;
+                    } else {
+                        data.charts = "";
+                    }
                     break;
                 case R.id.spinnerSyllabus:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Syllabus")) {
                         data.syllabus = selectedItem;
+                    } else {
+                        data.syllabus = "";
+                    }
                     break;
                 case R.id.spinnerLibrary:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Library Books")) {
                         data.library = selectedItem;
+                    } else {
+                        data.library = "";
+                    }
                     break;
                 case R.id.spinnerMedicine:
-                    if (!selectedItem.equalsIgnoreCase(""))
+                    if (!selectedItem.equalsIgnoreCase("Medicine")) {
                         data.medicine = selectedItem;
+                    } else {
+                        data.medicine = "";
+                    }
                     break;
             }
 
@@ -334,11 +423,11 @@ public class FormFragment extends Fragment {
 
     private void setLastReportDetails(String villageName) {
         Cursor cursor = db.rawQuery("select * from advisor_report where village = '" + villageName + "' ORDER BY id DESC LIMIT 1", null);
-        while (cursor.moveToNext()){
-            data.lastVisitAdvisorName = cursor.getString(cursor.getColumnIndex("last_visit_advisor_name"));
-            data.advisorLastVisitDate = cursor.getString(cursor.getColumnIndex("advisor_last_visit"));
+        while (cursor.moveToNext()) {
+            data.lastVisitAdvisorName = cursor.getString(cursor.getColumnIndex("date"));
+            data.advisorLastVisitDate = cursor.getString(cursor.getColumnIndex("advisor_username"));
             txtAdvisorLastVisited.setText(data.lastVisitAdvisorName);
-            getTxtAdvisorLastVisitedTime.setText(data.advisorLastVisitDate);
+            txtAdvisorLastVisitedTime.setText(data.advisorLastVisitDate);
         }
     }
 

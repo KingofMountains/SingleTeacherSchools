@@ -1,5 +1,7 @@
 package com.sts.singleteacherschool.Utilities;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,6 +11,8 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class Utils {
+
+    public static AlertDialog.Builder alert;
 
     public static boolean hasInternet(Context context) {
         NetworkInfo info = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
@@ -29,7 +33,16 @@ public class Utils {
     }
 
     public static void clearPreferences(Context context) {
-        Preferences.setAdvisorName(context,"");
-        Preferences.setAdvisorSanchayatID(context,"");
+        Preferences.setAdvisorName(context, "");
+        Preferences.setAdvisorSanchayatID(context, "");
+    }
+
+    public static void showAlert(Activity thisActivity, String message) {
+
+        if (null == alert) {
+            alert = new AlertDialog.Builder(thisActivity);
+        }
+
+        alert.setMessage(message).show();
     }
 }

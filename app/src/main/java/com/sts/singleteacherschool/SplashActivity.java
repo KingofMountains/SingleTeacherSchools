@@ -1,14 +1,19 @@
 package com.sts.singleteacherschool;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.sts.singleteacherschool.Data.DatabaseHelper;
 import com.sts.singleteacherschool.Network.VolleySingleton;
+import com.sts.singleteacherschool.Utilities.RuntimePermission;
 import com.sts.singleteacherschool.Utilities.Utils;
 
 import org.json.JSONArray;
@@ -26,6 +32,8 @@ import org.json.JSONObject;
 import java.io.File;
 
 public class SplashActivity extends AppCompatActivity {
+    private static final String READ_WRITE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+    private static final int READ_WRITE_PERMISSION_CODE = 601;
     File image;
     RequestQueue queue;
     ProgressBar loading;
@@ -39,10 +47,20 @@ public class SplashActivity extends AppCompatActivity {
         queue = VolleySingleton.getInstance(this).getRequestQueue();
         loading = (ProgressBar) findViewById(R.id.progressBar);
 
-        if (!image.exists()) {
-            image.mkdirs();
+        if(Build.VERSION.SDK_INT >= 23) {
+            if(RuntimePermission.hasPermission(this, READ_WRITE_PERMISSION)) {
+                makeDirectory();
+            } else {
+                requestPermissions(new String[]{READ_WRITE_PERMISSION}, READ_WRITE_PERMISSION_CODE);
+            }
+        } else {
+            makeDirectory();
         }
 
+
+    }
+
+    private void continueToLogin() {
         if(Utils.hasInternet(this)) {
 
             new Thread(new Runnable() {
@@ -78,6 +96,30 @@ public class SplashActivity extends AppCompatActivity {
             }).start();
         } else {
             loadLoginActivity();
+        }
+    }
+
+    private void makeDirectory() {
+        if (!image.exists()) {
+            image.mkdirs();
+        }
+        continueToLogin();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if(requestCode == READ_WRITE_PERMISSION_CODE){
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makeDirectory();
+            } else {
+                if(!shouldShowRequestPermissionRationale(READ_WRITE_PERMISSION)) {
+                    RuntimePermission.showAlertforBlockedPermission(SplashActivity.this,"Storage Permission Denied","It seems Storage Permission is blocked!. Please enable the storage settings in settings page.","Go To Settings");
+                } else {
+                    Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            }
         }
     }
 
