@@ -271,6 +271,7 @@ public class FormFragment extends Fragment {
                     if (!selectedItem.equalsIgnoreCase("Name of Village")) {
                         String villageID = villageArrayList.get(position - 1).id;
                         data.villageName = selectedItem;
+                        setLastReportDetails(data.villageName);
                         getAcharya(villageID);
                     } else {
                         data.villageName = "";
@@ -331,6 +332,16 @@ public class FormFragment extends Fragment {
         }
     }
 
+    private void setLastReportDetails(String villageName) {
+        Cursor cursor = db.rawQuery("select * from advisor_report where village = '" + villageName + "' ORDER BY id DESC LIMIT 1", null);
+        while (cursor.moveToNext()){
+            data.lastVisitAdvisorName = cursor.getString(cursor.getColumnIndex("last_visit_advisor_name"));
+            data.advisorLastVisitDate = cursor.getString(cursor.getColumnIndex("advisor_last_visit"));
+            txtAdvisorLastVisited.setText(data.lastVisitAdvisorName);
+            getTxtAdvisorLastVisitedTime.setText(data.advisorLastVisitDate);
+        }
+    }
+
     private class StudentCountWatcher implements TextWatcher {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -382,5 +393,12 @@ public class FormFragment extends Fragment {
         } else {
             txtTotalActual.setText(String.valueOf(total));
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        db.close();
+        dbHelper.close();
     }
 }

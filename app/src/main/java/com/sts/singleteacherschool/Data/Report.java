@@ -2,11 +2,8 @@ package com.sts.singleteacherschool.Data;
 
 public class Report {
     public String advisorName = "";
-    public String userId = "";
-    public String advisorId = "";
     public String loggedInTime = "";
     public String sanchayatName = "";
-    public String sanchayatId = "";
     public String villageName = "";
     public String acharyaName = "";
     public String boysActualStrength = "";
@@ -26,9 +23,11 @@ public class Report {
     public String medicine = "";
     public String description = "";
     public String advisorLastVisitDate = "";
-    public String advisorLastVisit = "";
+    public String lastVisitAdvisorName = "";
     public String imageone = "";
     public String imagetwo = "";
     public String imagethree = "";
     public String imagefour = "";
+    public String loggedOutTime = "";
+    public int id;
 }

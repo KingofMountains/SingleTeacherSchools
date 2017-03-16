@@ -39,11 +39,13 @@
                 android:id="@+id/txtUserID"
                 style="@style/loginEditTextStyle"
                 android:inputType="text"
+                android:background="@drawable/curvedborder_orange_light"
                 android:layout_width="match_parent"
                 android:hint="@string/user_id" />
 
             <EditText
                 android:id="@+id/txtPassword"
+                android:background="@drawable/curvedborder_orange_light"
                 android:inputType="textPassword"
                 style="@style/loginEditTextStyle"
                 android:layout_width="match_parent"

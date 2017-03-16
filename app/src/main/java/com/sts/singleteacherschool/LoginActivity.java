@@ -109,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
             if (loading != null && loading.isShowing()) {
                 loading.dismiss();
             }
-
+            db.close();
             dbHelper.close();
 
         }

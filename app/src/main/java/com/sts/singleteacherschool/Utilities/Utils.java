@@ -28,4 +28,8 @@ public class Utils {
         return date;
     }
 
+    public static void clearPreferences(Context context) {
+        Preferences.setAdvisorName(context,"");
+        Preferences.setAdvisorSanchayatID(context,"");
+    }
 }

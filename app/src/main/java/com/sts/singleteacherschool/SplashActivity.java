@@ -1,6 +1,5 @@
 package com.sts.singleteacherschool;
 
-import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,7 +28,7 @@ import java.io.File;
 public class SplashActivity extends AppCompatActivity {
     File image;
     RequestQueue queue;
-    ProgressDialog loading;
+    ProgressBar loading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class SplashActivity extends AppCompatActivity {
 
         image = new File(Environment.getExternalStorageDirectory(), "/.STS");
         queue = VolleySingleton.getInstance(this).getRequestQueue();
+        loading = (ProgressBar) findViewById(R.id.progressBar);
 
         if (!image.exists()) {
             image.mkdirs();
@@ -65,7 +67,7 @@ public class SplashActivity extends AppCompatActivity {
                                 }
                             });
 
-                            loading = ProgressDialog.show(SplashActivity.this, "", "Loading..", false);
+                            loading.setVisibility(View.VISIBLE);
 
                             queue.add(stringRequest);
 
@@ -196,12 +198,8 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
-            if (loading != null && loading.isShowing()) {
-                loading.dismiss();
-            }
-
+            loading.setVisibility(View.GONE);    db.close();
             dbHelper.close();
-
             loadLoginActivity();
         }
     }

@@ -15,6 +15,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp"
             android:orientation="vertical">
 
 
@@ -137,7 +139,7 @@
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
-                        android:maxLength="100"
+                        android:maxLength="5"
                         tools:text="10" />
 
                 </LinearLayout>
@@ -159,7 +161,7 @@
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
-                        android:maxLength="100"
+                        android:maxLength="5"
                         tools:text="10" />
 
                 </LinearLayout>
@@ -218,7 +220,7 @@
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
-                        android:maxLength="100"
+                        android:maxLength="5"
                         tools:text="10" />
 
                 </LinearLayout>
@@ -240,7 +242,7 @@
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
-                        android:maxLength="100"
+                        android:maxLength="5"
                         tools:text="10" />
 
                 </LinearLayout>
@@ -515,12 +517,19 @@
 
                     <EditText
                         android:id="@+id/txtAdvisorLastVisit"
-                        style="@style/formEditTextStyle"
+                        android:layout_height="38dp"
+                        android:padding="4dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textSize="14sp"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
+                        android:maxLines="1"
+                        android:ellipsize="end"
                         android:background="@drawable/curvedborder_orange_light"
                         android:focusable="false"
                         tools:text="@string/login_time" />
+
 
                 </LinearLayout>
 
