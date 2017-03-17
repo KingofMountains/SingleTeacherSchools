@@ -3,17 +3,26 @@ package com.sts.singleteacherschool.Utilities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 
 public class RuntimePermission {
 
-    public static boolean hasPermission(Context context, String permission) {
+    public static boolean isMarshmallowOrGreater(){
 
-        if (context.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED) {
+        if(Build.VERSION.SDK_INT >= 23)
+            return true;
+
+        return false;
+    }
+
+    public static boolean hasPermission(Activity activity, String permission) {
+
+        if (ContextCompat.checkSelfPermission(activity,permission) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
         return false;

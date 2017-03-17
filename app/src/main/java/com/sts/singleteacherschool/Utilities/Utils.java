@@ -3,6 +3,7 @@ package com.sts.singleteacherschool.Utilities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.format.DateFormat;
@@ -22,6 +23,7 @@ public class Utils {
         if (info.isRoaming()) {
             return true;
         }
+
         return true;
     }
 
@@ -41,6 +43,12 @@ public class Utils {
 
         if (null == alert) {
             alert = new AlertDialog.Builder(thisActivity);
+            alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                 dialog.dismiss();
+                }
+            });
         }
 
         alert.setMessage(message).show();

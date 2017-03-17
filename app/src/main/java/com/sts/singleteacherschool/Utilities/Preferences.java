@@ -30,4 +30,6 @@ public class Preferences {
         SharedPreferences userPreference = PreferenceManager.getDefaultSharedPreferences(mActivity);
         return userPreference.getString("sanchayatid", "");
     }
+
+
 }

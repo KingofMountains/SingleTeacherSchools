@@ -1,4 +1,4 @@
-package com.sts.singleteacherschool;
+package com.sts.singleteacherschool.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -20,6 +20,8 @@ import com.sts.singleteacherschool.Data.Acharya;
 import com.sts.singleteacherschool.Data.DatabaseHelper;
 import com.sts.singleteacherschool.Data.Sanchayat;
 import com.sts.singleteacherschool.Data.Village;
+import com.sts.singleteacherschool.Listeners.OnFragmentInteractionListener;
+import com.sts.singleteacherschool.R;
 import com.sts.singleteacherschool.Utilities.Preferences;
 import com.sts.singleteacherschool.Utilities.Utils;
 
@@ -424,8 +426,8 @@ public class FormFragment extends Fragment {
     private void setLastReportDetails(String villageName) {
         Cursor cursor = db.rawQuery("select * from advisor_report where village = '" + villageName + "' ORDER BY id DESC LIMIT 1", null);
         while (cursor.moveToNext()) {
-            data.lastVisitAdvisorName = cursor.getString(cursor.getColumnIndex("date"));
-            data.advisorLastVisitDate = cursor.getString(cursor.getColumnIndex("advisor_username"));
+            data.lastVisitAdvisorName = cursor.getString(cursor.getColumnIndex("advisor_username"));
+            data.advisorLastVisitDate = cursor.getString(cursor.getColumnIndex("date"));
             txtAdvisorLastVisited.setText(data.lastVisitAdvisorName);
             txtAdvisorLastVisitedTime.setText(data.advisorLastVisitDate);
         }

@@ -32,6 +32,8 @@ public class ReportSyncService extends IntentService {
     int serverResponseCode = 0;
     String upLoadServerUri = null;
 
+    DatabaseHelper databaseHelper;
+    SQLiteDatabase db;
 
     public ReportSyncService() {
         super("");
@@ -40,8 +42,8 @@ public class ReportSyncService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+         databaseHelper = new DatabaseHelper(getApplicationContext());
+         db = databaseHelper.getWritableDatabase();
 
         queue = VolleySingleton.getInstance(this).getRequestQueue();
         upLoadServerUri = "http://webmyls.com/sts/uploader.php";
@@ -161,6 +163,8 @@ public class ReportSyncService extends IntentService {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("Postign3 --------- "+data.acharyaName);
+                        db.execSQL("select from sync_report where id = "+data.id+"");
+                        closeDB();
                         Toast.makeText(getApplicationContext(), "Report posted successfully!", Toast.LENGTH_LONG).show();
                     }
                 },
@@ -210,6 +214,11 @@ public class ReportSyncService extends IntentService {
 
         queue.add(stringRequest);
 
+    }
+
+    private void closeDB() {
+        db.close();
+        databaseHelper.close();
     }
 
     public int uploadFile(String sourceFileUri) {

@@ -1,9 +1,11 @@
-package com.sts.singleteacherschool;
+package com.sts.singleteacherschool.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -12,6 +14,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.sts.singleteacherschool.Listeners.OnFragmentInteractionListener;
+import com.sts.singleteacherschool.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,12 +27,14 @@ import static com.sts.singleteacherschool.MainActivity.data;
 public class CaptureFragment extends Fragment {
 
     private static final String DIR_NAME = ".STS";
+    private static final int CAMERA_REQUEST = 101;
     private static String FILE_PATH = "";
     private static String DIR_PATH = "";
     View v;
     ImageView imgOne, imgTwo, imgThree, imgFour;
     private OnFragmentInteractionListener mListener;
     private int clickedImage = 0;
+    Activity thisActivity;
 
     public CaptureFragment() {
         // Required empty public constructor
@@ -46,6 +53,8 @@ public class CaptureFragment extends Fragment {
     }
 
     private void init() {
+
+        thisActivity = getActivity();
 
         DIR_PATH = Environment.getExternalStorageDirectory() + File.separator + DIR_NAME + File.separator;
 
@@ -101,13 +110,13 @@ public class CaptureFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 101 && resultCode == Activity.RESULT_OK && null != data) {
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK ) {
 
             long currentTimestamp = System.currentTimeMillis();
             FILE_PATH = DIR_PATH + "sts_image_" + currentTimestamp + ".png";
-            Bitmap photo = data.getExtras().getParcelable("data");
 
             try {
+                Bitmap photo = BitmapFactory.decodeFile(DIR_PATH + "temp.png");
                 File outFile = new File(FILE_PATH);
                 if (!outFile.exists())
                     outFile.createNewFile();
@@ -150,8 +159,15 @@ public class CaptureFragment extends Fragment {
         @Override
         public void onClick(View v) {
             clickedImage = v.getId();
-            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            getActivity().startActivityFromFragment(CaptureFragment.this, cameraIntent, 101);
+
+            Uri outputFileUri;
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            outputFileUri = Uri.fromFile(new File(DIR_PATH + "temp.png"));
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
+            intent.putExtra("return-data", true);
+            getActivity().startActivityFromFragment(CaptureFragment.this,intent, CAMERA_REQUEST);
+//            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//            getActivity().startActivityFromFragment(CaptureFragment.this, cameraIntent, 101);
         }
     }
 }

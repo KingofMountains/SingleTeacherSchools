@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -30,11 +29,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
+
+import static com.sts.singleteacherschool.Utilities.RuntimePermission.isMarshmallowOrGreater;
+
 
 public class SplashActivity extends AppCompatActivity {
     private static final String READ_WRITE_PERMISSION = Manifest.permission.WRITE_EXTERNAL_STORAGE;
     private static final int READ_WRITE_PERMISSION_CODE = 601;
-    File image;
+    File image_directory;
     RequestQueue queue;
     ProgressBar loading;
 
@@ -43,12 +46,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        image = new File(Environment.getExternalStorageDirectory(), "/.STS");
+        image_directory = new File(Environment.getExternalStorageDirectory(), "/.STS");
         queue = VolleySingleton.getInstance(this).getRequestQueue();
         loading = (ProgressBar) findViewById(R.id.progressBar);
 
-        if(Build.VERSION.SDK_INT >= 23) {
-            if(RuntimePermission.hasPermission(this, READ_WRITE_PERMISSION)) {
+        if (isMarshmallowOrGreater()) {
+            if(RuntimePermission.hasPermission(this,READ_WRITE_PERMISSION)) {
                 makeDirectory();
             } else {
                 requestPermissions(new String[]{READ_WRITE_PERMISSION}, READ_WRITE_PERMISSION_CODE);
@@ -61,7 +64,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void continueToLogin() {
-        if(Utils.hasInternet(this)) {
+        if (Utils.hasInternet(this)) {
 
             new Thread(new Runnable() {
                 @Override
@@ -100,16 +103,25 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void makeDirectory() {
-        if (!image.exists()) {
-            image.mkdirs();
+        if (!image_directory.exists()) {
+            image_directory.mkdirs();
         }
+
+        File mFileTemp = new File(image_directory.getPath().toString() + "/" + "temp.png");
+
+        try {
+            mFileTemp.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         continueToLogin();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        if(requestCode == READ_WRITE_PERMISSION_CODE){
+        if (requestCode == READ_WRITE_PERMISSION_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 makeDirectory();
             } else {
@@ -131,7 +143,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected Integer doInBackground(String... params) {
 
-            System.out.println("response ------- "+params[0]);
+            System.out.println("response ------- " + params[0]);
 
             dbHelper = new DatabaseHelper(SplashActivity.this);
             db = dbHelper.getWritableDatabase();
@@ -240,7 +252,8 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
-            loading.setVisibility(View.GONE);    db.close();
+            loading.setVisibility(View.GONE);
+            db.close();
             dbHelper.close();
             loadLoginActivity();
         }
