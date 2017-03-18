@@ -28,7 +28,7 @@ import com.sts.singleteacherschool.Utilities.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.sts.singleteacherschool.MainActivity.data;
+import static com.sts.singleteacherschool.ReportFormActivity.data;
 
 public class FormFragment extends Fragment {
 
@@ -98,7 +98,7 @@ public class FormFragment extends Fragment {
                     data.girlsAttendanceStrength = txtGirlsAttendance.getText().toString().trim();
                     data.totalAttendanceStrength = txtTotalAttendance.getText().toString().trim();
 
-                    if (allValuesEntered())
+                    if (!allValuesEntered())
                         mListener.onFragmentInteraction("continue");
                 }
             }

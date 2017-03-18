@@ -23,6 +23,8 @@
     <string name="get_all_report">http://www.webmyls.com/sts/get_all_adv_report.php</string>
     <string name="get_advisor_village_sanch_acharya">http://www.webmyls.com/sts/get_advisor_village_sanch_acharya.php</string>
     <string name="post_advisor_report">http://webmyls.com/sts/post_all_adv_report.php</string>
+    <string name="upload_images">http://webmyls.com/sts/uploader.php</string>
+    <string name="upload_image_path">http://webmyls.com/sts/uploads/</string>
 
     <string-array name="uniform">
         <item>Acharya in Uniform</item>

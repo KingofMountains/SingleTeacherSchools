@@ -64,6 +64,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void continueToLogin() {
+
         if (Utils.hasInternet(this)) {
 
             new Thread(new Runnable() {
@@ -107,7 +108,7 @@ public class SplashActivity extends AppCompatActivity {
             image_directory.mkdirs();
         }
 
-        File mFileTemp = new File(image_directory.getPath().toString() + "/" + "temp.png");
+        File mFileTemp = new File(image_directory.getPath().toString() + "/" + "temp.jpg");
 
         try {
             mFileTemp.createNewFile();

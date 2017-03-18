@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -22,7 +23,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import static com.sts.singleteacherschool.MainActivity.data;
+import static com.sts.singleteacherschool.ReportFormActivity.data;
 
 public class CaptureFragment extends Fragment {
 
@@ -110,18 +111,24 @@ public class CaptureFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK ) {
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
 
             long currentTimestamp = System.currentTimeMillis();
-            FILE_PATH = DIR_PATH + "sts_image_" + currentTimestamp + ".png";
+            FILE_PATH = DIR_PATH + "sts_image_" + currentTimestamp + ".jpg";
 
             try {
-                Bitmap photo = BitmapFactory.decodeFile(DIR_PATH + "temp.png");
+                Bitmap photo = BitmapFactory.decodeFile(DIR_PATH + "temp.jpg");
                 File outFile = new File(FILE_PATH);
                 if (!outFile.exists())
                     outFile.createNewFile();
                 FileOutputStream fos = new FileOutputStream(outFile);
-                photo.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                photo.compress(Bitmap.CompressFormat.JPEG, 85, fos);
+                ExifInterface exif = new ExifInterface(DIR_PATH + "temp.jpg");
+                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_NORMAL);
+                if(orientation ==6) {
+                    
+                }
+                System.out.println("orientation ----------- "+orientation);
                 fos.flush();
                 fos.close();
                 setImageToImageView(photo);
@@ -162,12 +169,10 @@ public class CaptureFragment extends Fragment {
 
             Uri outputFileUri;
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            outputFileUri = Uri.fromFile(new File(DIR_PATH + "temp.png"));
+            outputFileUri = Uri.fromFile(new File(DIR_PATH + "temp.jpg"));
             intent.putExtra(MediaStore.EXTRA_OUTPUT, outputFileUri);
             intent.putExtra("return-data", true);
-            getActivity().startActivityFromFragment(CaptureFragment.this,intent, CAMERA_REQUEST);
-//            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//            getActivity().startActivityFromFragment(CaptureFragment.this, cameraIntent, 101);
+            getActivity().startActivityFromFragment(CaptureFragment.this, intent, CAMERA_REQUEST);
         }
     }
 }

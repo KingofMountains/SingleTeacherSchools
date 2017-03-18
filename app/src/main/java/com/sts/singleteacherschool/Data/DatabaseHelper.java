@@ -102,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean insertAdvisorReport(Report data, SQLiteDatabase db) {
+    public boolean insertSyncReport(Report data, SQLiteDatabase db) {
 
         db.beginTransaction();
         try {
@@ -152,7 +152,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean insertAdvisorReport(ArrayList<Report> list, SQLiteDatabase db) {
+    public boolean insertSyncReport(ArrayList<Report> list, SQLiteDatabase db) {
 
         db.beginTransaction();
         try {
