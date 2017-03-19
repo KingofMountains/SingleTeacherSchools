@@ -3,13 +3,11 @@ package com.sts.singleteacherschool;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.sts.singleteacherschool.Data.DatabaseHelper;
 import com.sts.singleteacherschool.Data.Report;
 import com.sts.singleteacherschool.Fragments.CaptureFragment;
 import com.sts.singleteacherschool.Fragments.FormFragment;
@@ -25,7 +23,7 @@ public class ReportFormActivity extends AppCompatActivity implements OnFragmentI
 
     Activity thisActivity;
     public static Report data;
-    ProgressDialog dialog = null;
+    ProgressDialog loading = null;
 
     String upLoadServerUri = null;
     String uploadFilePath = "";
@@ -54,7 +52,7 @@ public class ReportFormActivity extends AppCompatActivity implements OnFragmentI
                 loadCaptureFragment();
                 break;
             case "submit":
-                dialog = ProgressDialog.show(ReportFormActivity.this, "", "Uploading file...", false);
+                loading = ProgressDialog.show(ReportFormActivity.this, "", "Uploading file...", false);
                 onSubmitClicked();
                 break;
         }
@@ -76,42 +74,39 @@ public class ReportFormActivity extends AppCompatActivity implements OnFragmentI
                             @Override
                             public void onUploadCompleted() {
                                 Toast.makeText(ReportFormActivity.this, "Report posted successfully!", Toast.LENGTH_LONG).show();
-                                dialog.dismiss();
+                                loading.dismiss();
                                 loadLoginActivity();
+                            }
+
+                            @Override
+                            public void onUploadFailed() {
+                               onNoInternetOrPostFailed("Failed to post due bad network.Report will be posted once connected to internet.");
                             }
                         });
                     } else {
-
-                        try {
-                            DatabaseHelper dbHelper = new DatabaseHelper(ReportFormActivity.this);
-                            SQLiteDatabase db = dbHelper.getWritableDatabase();
-                            dbHelper.insertSyncReport(data, db);
-                            db.close();
-                            dbHelper.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                dialog.cancel();
-                                Toast.makeText(thisActivity, "No Internet Connection!. Report will be posted once connected to internet.", Toast.LENGTH_SHORT).show();
-                                loadLoginActivity();
-                            }
-                        });
-
-
+                        onNoInternetOrPostFailed("No Internet Connection!. Report will be posted once connected to internet.");
                     }
                 }
             }).start();
 
         } else {
             Utils.showAlert(thisActivity, "Please select all images");
-            dialog.dismiss();
+            loading.dismiss();
         }
 
 
+    }
+
+    private void onNoInternetOrPostFailed(final String msg) {
+        Utils.saveReportToPostLater(thisActivity,data);
+        loading.dismiss();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(thisActivity,msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+        loadLoginActivity();
     }
 
     private void loadLoginActivity() {

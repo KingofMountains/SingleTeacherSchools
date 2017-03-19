@@ -20,14 +20,14 @@ import com.sts.singleteacherschool.Utilities.Preferences;
 
 import java.util.ArrayList;
 
-public class ViewReportActivity extends AppCompatActivity  {
+public class ViewReportActivity extends AppCompatActivity {
 
     ViewPager reportPager;
     ReportPagerAdapter adapter;
     ProgressDialog loading;
     private int no_of_reports = 0;
     ArrayList<Report> list = new ArrayList<>();
-    TextView lblNoReportsFound, lblPrev, lblNext;
+    TextView lblNoReportsFound, lblPrev, lblNext, lblPageNo;
     LinearLayout lnrNavigation;
 
     @Override
@@ -38,6 +38,7 @@ public class ViewReportActivity extends AppCompatActivity  {
         lnrNavigation = (LinearLayout) findViewById(R.id.lnrNavigation);
         lblPrev = (TextView) findViewById(R.id.lblPrev);
         lblNext = (TextView) findViewById(R.id.lblNext);
+        lblPageNo = (TextView) findViewById(R.id.lblPageNo);
         lblNoReportsFound = (TextView) findViewById(R.id.lblNoReportsFound);
         reportPager = (ViewPager) findViewById(R.id.pagerReport);
         adapter = new ReportPagerAdapter(getSupportFragmentManager());
@@ -53,6 +54,8 @@ public class ViewReportActivity extends AppCompatActivity  {
             @Override
             public void onPageSelected(int position) {
 //                Toast.makeText(ViewReportActivity.this, "Selected Item --- " + position, Toast.LENGTH_SHORT).show();
+
+                setReportPageStatus();
 
                 if (position == list.size() - 1) {
                     lblNext.setClickable(false);
@@ -136,6 +139,7 @@ public class ViewReportActivity extends AppCompatActivity  {
             reportPager.setAdapter(adapter);
             reportPager.setOffscreenPageLimit(0);
             lblPrev.setTextColor(getResources().getColor(R.color.secondary_text));
+            setReportPageStatus();
         } else {
             lblNoReportsFound.setVisibility(View.VISIBLE);
             lnrNavigation.setVisibility(View.GONE);
@@ -144,6 +148,11 @@ public class ViewReportActivity extends AppCompatActivity  {
         if (loading != null && loading.isShowing()) {
             loading.dismiss();
         }
+    }
+
+    private void setReportPageStatus() {
+        String pageStatus = (reportPager.getCurrentItem() + 1) + " of " + no_of_reports ;
+        lblPageNo.setText(pageStatus);
     }
 
     public void onPrevious(View view) {

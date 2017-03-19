@@ -45,6 +45,8 @@
         </activity>
         <activity android:name=".ViewReportActivity">
         </activity>
+        <activity android:name=".NewLocationActivity">
+        </activity>
     </application>
 
 </manifest>

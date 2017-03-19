@@ -95,6 +95,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "  img_3 varchar(255) NOT NULL," +
                 "  img_4 varchar(255) NOT NULL," +
                 "  logout_details datetime NOT NULL, PRIMARY KEY (id))");
+
+        //creating location sync table
+        db.execSQL("CREATE TABLE sync_location_report(report_date datetime NOT NULL,advisor_name varchar(244) NOT NULL,location varchar(255) NOT NULL,contact_name varchar(255) NOT NULL,contact_no varchar(255) NOT NULL,school_name varchar(255) NOT NULL,comments varchar(255) NOT NULL)");
+
+
     }
 
     @Override
@@ -107,41 +112,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.beginTransaction();
         try {
 
-               ContentValues values = new ContentValues();
-                values.clear();
+            ContentValues values = new ContentValues();
+            values.clear();
 
-                values.put("id", data.id);
-                values.put("date", data.loggedInTime);
-                values.put("advisor_username", data.advisorName);
-                values.put("advisor_userid", data.advisor_userid);
-                values.put("sanch", data.sanchayatName);
-                values.put("village", data.villageName);
-                values.put("acharya", data.acharyaName);
-                values.put("st_strength_boys", data.boysActualStrength);
-                values.put("st_strength_girls", data.girlsActualStrength);
-                values.put("st_strength_total", data.totalActualStrength);
-                values.put("attendance_boys", data.boysAttendanceStrength);
-                values.put("attendance_girls", data.girlsAttendanceStrength);
-                values.put("attendance_total", data.totalAttendanceStrength);
-                values.put("acharya_uniform", data.uniform);
-                values.put("black_board", data.blackboard);
-                values.put("corp_name_board", data.corporate);
-                values.put("mats", data.mats);
-                values.put("solar_lamp", data.solarlamp);
-                values.put("charts", data.charts);
-                values.put("syllabus", data.syllabus);
-                values.put("library_books", data.library);
-                values.put("medicine", data.medicine);
-                values.put("remarks", data.description);
-                values.put("advisor_last_visit", data.advisorLastVisitDate);
-                values.put("last_visit_advisor_name", data.lastVisitAdvisorName);
-                values.put("img_1", data.imageone);
-                values.put("img_2", data.imagetwo);
-                values.put("img_3", data.imagethree);
-                values.put("img_4", data.imagefour);
-                values.put("logout_details", data.loggedOutTime);
+            values.put("id", data.id);
+            values.put("date", data.loggedInTime);
+            values.put("advisor_username", data.advisorName);
+            values.put("advisor_userid", data.advisor_userid);
+            values.put("sanch", data.sanchayatName);
+            values.put("village", data.villageName);
+            values.put("acharya", data.acharyaName);
+            values.put("st_strength_boys", data.boysActualStrength);
+            values.put("st_strength_girls", data.girlsActualStrength);
+            values.put("st_strength_total", data.totalActualStrength);
+            values.put("attendance_boys", data.boysAttendanceStrength);
+            values.put("attendance_girls", data.girlsAttendanceStrength);
+            values.put("attendance_total", data.totalAttendanceStrength);
+            values.put("acharya_uniform", data.uniform);
+            values.put("black_board", data.blackboard);
+            values.put("corp_name_board", data.corporate);
+            values.put("mats", data.mats);
+            values.put("solar_lamp", data.solarlamp);
+            values.put("charts", data.charts);
+            values.put("syllabus", data.syllabus);
+            values.put("library_books", data.library);
+            values.put("medicine", data.medicine);
+            values.put("remarks", data.description);
+            values.put("advisor_last_visit", data.advisorLastVisitDate);
+            values.put("last_visit_advisor_name", data.lastVisitAdvisorName);
+            values.put("img_1", data.imageone);
+            values.put("img_2", data.imagetwo);
+            values.put("img_3", data.imagethree);
+            values.put("img_4", data.imagefour);
+            values.put("logout_details", data.loggedOutTime);
 
-                db.insertWithOnConflict("sync_report", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+            db.insertWithOnConflict("sync_report", null, values, SQLiteDatabase.CONFLICT_REPLACE);
 
             db.setTransactionSuccessful();
         } catch (Exception e) {
@@ -194,6 +199,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 db.insertWithOnConflict("advisor_report", null, values, SQLiteDatabase.CONFLICT_REPLACE);
             }
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            db.endTransaction();
+        }
+
+        return true;
+    }
+
+    public boolean insertLocationSyncReport(LocationReport data, SQLiteDatabase db) {
+
+        db.beginTransaction();
+        try {
+
+            ContentValues values = new ContentValues();
+            values.clear();
+
+            values.put("report_date", data.report_date);
+            values.put("advisor_name", data.advisor_name);
+            values.put("location", data.location);
+            values.put("contact_name", data.contact_name);
+            values.put("contact_no", data.contact_no);
+            values.put("school_name", data.school_name);
+            values.put("comments", data.comments);
+
+            db.insertWithOnConflict("sync_location_report", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+
             db.setTransactionSuccessful();
         } catch (Exception e) {
             e.printStackTrace();

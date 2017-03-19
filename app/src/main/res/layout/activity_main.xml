@@ -12,8 +12,9 @@
         android:gravity="center"
         android:elevation="5dp"
         android:text="@string/advisor_report"
+        android:textStyle="bold"
         android:textColor="@color/primary_text"
-        android:textSize="22dp"/>
+        android:textSize="20dp"/>
 
     <FrameLayout
         android:id="@+id/frmContainer"

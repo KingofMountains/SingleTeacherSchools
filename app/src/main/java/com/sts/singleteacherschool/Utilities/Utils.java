@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
@@ -15,6 +16,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.sts.singleteacherschool.Data.DatabaseHelper;
+import com.sts.singleteacherschool.Data.LocationReport;
 import com.sts.singleteacherschool.Data.Report;
 import com.sts.singleteacherschool.Listeners.UploadListener;
 import com.sts.singleteacherschool.Network.VolleySingleton;
@@ -115,7 +118,7 @@ public class Utils {
                                 }
                             }
 
-                            postAdvisorReport(context,data,listener);
+                            postAdvisorReport(context, data, listener);
                             uploadedCount = 0;
                         }
                     }
@@ -221,7 +224,7 @@ public class Utils {
                         + serverResponseMessage + ": " + serverResponseCode);
 
                 if (serverResponseCode == 200) {
-                    Log.e("Upload file to server","- success");
+                    Log.e("Upload file to server", "- success");
                     uploadedCount++;
 
                 }
@@ -252,15 +255,14 @@ public class Utils {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println("Postign onResponse --------- "+data.acharyaName);
+                        System.out.println("Postign onResponse --------- " + data.acharyaName);
                         listener.onUploadCompleted();
-                   }
+                    }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("Postign onErrorResponse --------- "+data.acharyaName);
-                        listener.onUploadCompleted();
+                        System.out.println("Postign onErrorResponse --------- " + data.acharyaName);
                     }
                 }) {
             @Override
@@ -295,7 +297,7 @@ public class Utils {
                 params.put("img_3", data.imagethree);
                 params.put("img_4", data.imagefour);
                 params.put("logout_details", data.loggedOutTime);
-                System.out.println("Postign2 --------- "+data.acharyaName);
+                System.out.println("Postign2 --------- " + data.acharyaName);
                 return params;
             }
 
@@ -305,24 +307,85 @@ public class Utils {
 
     }
 
-    public static boolean backupDB(Context context){
+    public static boolean backupDB(Context context) {
         try {
-                String currentDBPath = "/data/data/" + context.getPackageName() + "/databases/sts.sqlite";
-                String backupDBPath = "sts.sqlite";
-                File currentDB = new File(currentDBPath);
-                File backupDB = new File(Environment.getExternalStorageDirectory(), backupDBPath);
+            String currentDBPath = "/data/data/" + context.getPackageName() + "/databases/sts.sqlite";
+            String backupDBPath = "sts.sqlite";
+            File currentDB = new File(currentDBPath);
+            File backupDB = new File(Environment.getExternalStorageDirectory(), backupDBPath);
 
-                if (currentDB.exists()) {
-                    FileChannel src = new FileInputStream(currentDB).getChannel();
-                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
-                    dst.transferFrom(src, 0, src.size());
-                    src.close();
-                    dst.close();
-                }
+            if (currentDB.exists()) {
+                FileChannel src = new FileInputStream(currentDB).getChannel();
+                FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                dst.transferFrom(src, 0, src.size());
+                src.close();
+                dst.close();
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
         return true;
+    }
+
+    public static void submitNewLocationReport(Context context, final LocationReport data, final UploadListener listener) {
+
+       RequestQueue queue = VolleySingleton.getInstance(context).getRequestQueue();
+        String url = context.getResources().getString(R.string.report_new_location);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        System.out.println("Postign onResponse NewLocationReport --------- ");
+                        listener.onUploadCompleted();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("Postign onErrorResponse NewLocationReport --------- ");
+                        listener.onUploadFailed();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("report_date", data.report_date);
+                params.put("advisor_name", data.advisor_name);
+                params.put("location", data.location);
+                params.put("contact_name", data.contact_name);
+                params.put("contact_no", data.contact_no);
+                params.put("school_name", data.school_name);
+                params.put("comments", data.comments);
+                return params;
+            }
+        };
+
+        queue.add(stringRequest);
+    }
+
+    public static void saveReportToPostLater(Context context,Report data) {
+        try {
+            DatabaseHelper dbHelper = new DatabaseHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            dbHelper.insertSyncReport(data, db);
+            db.close();
+            dbHelper.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveNewLocationReportToPostLater(Context context, LocationReport data) {
+        try {
+            DatabaseHelper dbHelper = new DatabaseHelper(context);
+            SQLiteDatabase db = dbHelper.getWritableDatabase();
+            dbHelper.insertLocationSyncReport(data, db);
+            db.close();
+            dbHelper.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

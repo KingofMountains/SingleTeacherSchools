@@ -23,7 +23,6 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -33,21 +32,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Advisor Name"/>
+                        android:layout_weight="1"
+                        android:text="Advisor Name"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblAdvisorName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -57,21 +65,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Name of Sanch"/>
+                        android:layout_weight="1"
+                        android:text="Name of Sanch"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblSanchName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -81,21 +98,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Name of Village"/>
+                        android:layout_weight="1"
+                        android:text="Name of Village"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblVillageName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -105,21 +131,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Name of Acharya"/>
+                        android:layout_weight="1"
+                        android:text="Name of Acharya"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblNameAcharya"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -129,21 +164,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Actual Strength Boys"/>
+                        android:layout_weight="1"
+                        android:text="Actual Strength Boys"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblActualStrengthBoys"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -153,21 +197,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Actual Strength Girls"/>
+                        android:layout_weight="1"
+                        android:text="Actual Strength Girls"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblActualStrengthGirls"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -177,21 +230,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Actual Strength Total"/>
+                        android:layout_weight="1"
+                        android:text="Actual Strength Total"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblActualStrengthTotal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -201,21 +263,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Attendance Boys"/>
+                        android:layout_weight="1"
+                        android:text="Attendance Boys"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblAttendanceBoys"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -225,21 +296,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Attendance Girls"/>
+                        android:layout_weight="1"
+                        android:text="Attendance Girls"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblAttendanceGirls"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -249,21 +329,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Attendance Total"/>
+                        android:layout_weight="1"
+                        android:text="Attendance Total"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblAttendanceToys"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -273,21 +362,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Uniform"/>
+                        android:layout_weight="1"
+                        android:text="Uniform"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblUniform"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -297,21 +395,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Black board"/>
+                        android:layout_weight="1"
+                        android:text="Black board"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblBlackboard"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -321,21 +428,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Corporate Name Board"/>
+                        android:layout_weight="1"
+                        android:text="Corporate Name Board"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblCorporate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -345,21 +461,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Mats"/>
+                        android:layout_weight="1"
+                        android:text="Mats"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblMats"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -369,21 +494,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Solar Lamp"/>
+                        android:layout_weight="1"
+                        android:text="Solar Lamp"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblSolarLamp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -393,21 +527,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Charts"/>
+                        android:layout_weight="1"
+                        android:text="Charts"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblCharts"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -417,21 +560,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Syllabus"/>
+                        android:layout_weight="1"
+                        android:text="Syllabus"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblSyllabus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text="Manikandan"/>
+                        android:layout_weight="1"
+                        android:text="Manikandan"
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -441,21 +593,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Library Books"/>
+                        android:layout_weight="1"
+                        android:text="Library Books"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblLibraryBooks"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -465,21 +626,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Medicine"/>
+                        android:layout_weight="1"
+                        android:text="Medicine"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblMedicine"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -488,23 +658,32 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Details"/>
+                        android:layout_weight="1"
+                        android:text="Details"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
-                        android:padding="3dp"
-                        android:background="@drawable/curvedborder_orange_light"
                         android:layout_margin="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:background="@drawable/curvedborder_orange_light"
+                        android:padding="3dp"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -514,21 +693,30 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Advisor Last Visited On"/>
+                        android:layout_weight="1"
+                        android:text="Advisor Last \n Visited On"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblLastVisitedDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/secondary_text"/>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -538,26 +726,25 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginLeft="5dp"
-                        android:text="Last Visit Advisor Name"/>
+                        android:layout_weight="1"
+                        android:text="Last Visit \n Advisor Name"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16dp"/>
 
                     <TextView
                         android:id="@+id/lblLastVisitAdvisor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textSize="16dp"
                         android:layout_marginRight="5dp"
-                        android:text=""/>
+                        android:layout_weight="1"
+                        android:text=""
+                        android:textSize="16dp"/>
 
                 </LinearLayout>
 
             </LinearLayout>
         </ScrollView>
-
-
 
 
     </android.support.v7.widget.CardView>

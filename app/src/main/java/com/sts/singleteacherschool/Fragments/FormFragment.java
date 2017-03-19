@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -70,15 +71,20 @@ public class FormFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if (v == null) {
             v = inflater.inflate(R.layout.fragment_form, container, false);
-            init();
         }
         return v;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        init();
+    }
+
     private void init() {
 
+        thisActivity = getActivity();
         initializeEditTextViews();
-
         initializeSpinners();
 
         dbHelper = new DatabaseHelper(thisActivity);
@@ -311,7 +317,6 @@ public class FormFragment extends Fragment {
         } else {
             throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
         }
-        thisActivity = getActivity();
     }
 
     @Override

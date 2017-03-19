@@ -8,10 +8,22 @@
     android:background="@color/colorPrimary"
     tools:context="com.sts.singleteacherschool.ViewReportActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:text="Report History"
+        android:textColor="@color/primary_text"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/pagerReport"
         android:layout_width="match_parent"
         android:paddingBottom="38dp"
+        android:paddingTop="40dp"
         android:layout_height="match_parent">
 
     </android.support.v4.view.ViewPager>
@@ -48,6 +60,7 @@
             android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/lblPageNo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"

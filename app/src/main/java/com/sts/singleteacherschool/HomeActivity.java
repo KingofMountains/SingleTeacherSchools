@@ -15,7 +15,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.sts.singleteacherschool.Data.DatabaseHelper;
 import com.sts.singleteacherschool.Data.Report;
-import com.sts.singleteacherschool.Fragments.ViewReportFragment;
 import com.sts.singleteacherschool.Network.VolleySingleton;
 import com.sts.singleteacherschool.Utilities.Utils;
 
@@ -145,6 +144,11 @@ public class HomeActivity extends AppCompatActivity{
             db.close();
             dbHelper.close();
         }
+    }
+
+    public void onNewLocation(View view) {
+        startActivity(new Intent(HomeActivity.this,NewLocationActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public void onCreateReport(View view) {

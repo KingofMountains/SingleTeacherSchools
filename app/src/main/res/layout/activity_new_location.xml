@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_location"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context="com.sts.singleteacherschool.NewLocationActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:elevation="5dp"
+        android:gravity="center"
+        android:text="New Location Report"
+        android:textColor="@color/primary_text"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+
+        <EditText
+            android:id="@+id/txtLocationName"
+            style="@style/formEditTextStyle"
+            android:layout_width="match_parent"
+            android:background="@drawable/curvedborder_white"
+            android:hint="@string/location_name"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/txtSchoolName"
+            style="@style/formEditTextStyle"
+            android:layout_width="match_parent"
+            android:background="@drawable/curvedborder_white"
+            android:hint="@string/school_name"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/txtContactPerson"
+            style="@style/formEditTextStyle"
+            android:layout_width="match_parent"
+            android:background="@drawable/curvedborder_white"
+           android:hint="@string/contact_person"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/txtContactNumber"
+            style="@style/formEditTextStyle"
+            android:layout_width="match_parent"
+            android:background="@drawable/curvedborder_white"
+            android:hint="@string/contact_phone"
+            android:maxLength="10"
+            android:inputType="number"/>
+
+        <EditText
+            android:id="@+id/txtComments"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/curvedborder_white"
+            android:gravity="start"
+            android:hint="@string/comments"
+            android:inputType="text|textMultiLine"
+            android:maxLength="255"
+            android:padding="8dp"
+            android:textSize="16dp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnNewSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/curvedborder_white"
+        android:text="@string/submit"
+        android:textColor="@color/colorPrimaryDark"/>
+
+</LinearLayout>
