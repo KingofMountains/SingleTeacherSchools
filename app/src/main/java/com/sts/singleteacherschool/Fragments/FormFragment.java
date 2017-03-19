@@ -98,7 +98,7 @@ public class FormFragment extends Fragment {
                     data.girlsAttendanceStrength = txtGirlsAttendance.getText().toString().trim();
                     data.totalAttendanceStrength = txtTotalAttendance.getText().toString().trim();
 
-                    if (!allValuesEntered())
+                    if (allValuesEntered())
                         mListener.onFragmentInteraction("continue");
                 }
             }
@@ -207,6 +207,8 @@ public class FormFragment extends Fragment {
 
         acharyaArray.clear();
         acharyaArray.add("Name of Acharya");
+        data.acharyaName = "";
+        adapterAcharya.notifyDataSetChanged();
 
         while (cursor.moveToNext()) {
 
@@ -220,6 +222,7 @@ public class FormFragment extends Fragment {
     }
 
     private void initializeEditTextViews() {
+
         txtLoggedinTime = (EditText) v.findViewById(R.id.txtLoginTime);
         txtAdvisorName = (EditText) v.findViewById(R.id.txtAdvisorName);
         txtBoysActual = (EditText) v.findViewById(R.id.txtStrengthBoys);

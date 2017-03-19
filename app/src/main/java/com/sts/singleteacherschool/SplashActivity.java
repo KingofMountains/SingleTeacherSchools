@@ -65,6 +65,12 @@ public class SplashActivity extends AppCompatActivity {
 
     private void continueToLogin() {
 
+//        if(Utils.backupDB(this)) {
+//            System.out.println("db copied");
+//        } else {
+//            System.out.println("db copied");
+//        }
+
         if (Utils.hasInternet(this)) {
 
             new Thread(new Runnable() {
@@ -85,7 +91,10 @@ public class SplashActivity extends AppCompatActivity {
                                     }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
-
+                                    System.out.println("SplashActivity ==== error response");
+                                    error.printStackTrace();
+                                    Toast.makeText(SplashActivity.this, "Slow network connection!, Please try again later.", Toast
+                                            .LENGTH_LONG).show();
                                 }
                             });
 
@@ -104,6 +113,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void makeDirectory() {
+
         if (!image_directory.exists()) {
             image_directory.mkdirs();
         }

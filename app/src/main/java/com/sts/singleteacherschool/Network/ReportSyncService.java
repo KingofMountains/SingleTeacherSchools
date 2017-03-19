@@ -44,6 +44,7 @@ public class ReportSyncService extends IntentService {
 
             data.id = cursor.getInt(cursor.getColumnIndex("id"));
             data.advisorName = cursor.getString(cursor.getColumnIndex("advisor_username"));
+            data.advisor_userid = cursor.getString(cursor.getColumnIndex("advisor_userid"));
             data.loggedInTime = cursor.getString(cursor.getColumnIndex("date"));
             data.sanchayatName = cursor.getString(cursor.getColumnIndex("sanch"));
             data.villageName = cursor.getString(cursor.getColumnIndex("village"));
@@ -77,7 +78,8 @@ public class ReportSyncService extends IntentService {
             Utils.submitReport(getApplicationContext(),data, new UploadListener() {
                 @Override
                 public void onUploadCompleted() {
-                    db.execSQL("select from sync_report where id = "+data.id+"");
+                    System.out.println("deleting from sync_Report --------- "+data.id);
+                    db.execSQL("delete from sync_report where id = "+data.id+"");
                     closeDB();
                     Toast.makeText(ReportSyncService.this, "Report posted successfully!", Toast.LENGTH_SHORT).show();
                 }

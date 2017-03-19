@@ -122,7 +122,8 @@ public class CaptureFragment extends Fragment {
                 if (!outFile.exists())
                     outFile.createNewFile();
                 FileOutputStream fos = new FileOutputStream(outFile);
-                photo.compress(Bitmap.CompressFormat.JPEG, 85, fos);
+                photo = Bitmap.createScaledBitmap(photo, 600, 600, false);
+                photo.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 ExifInterface exif = new ExifInterface(DIR_PATH + "temp.jpg");
                 int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_NORMAL);
                 if(orientation ==6) {

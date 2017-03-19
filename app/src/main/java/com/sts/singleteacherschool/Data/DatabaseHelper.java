@@ -36,7 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE advisor_report (" +
                 " id int(5) NOT NULL," +
                 "  date varchar(100) NOT NULL," +
-                "  advisor_username varchar(100) NOT NULL," +
+                "  advisor_username varchar(100) NOT NULL," + "  advisor_userid varchar(100) NOT NULL," +
                 "  sanch varchar(50) NOT NULL," +
                 "  village varchar(50) NOT NULL," +
                 "  acharya varchar(50) NOT NULL," +
@@ -68,7 +68,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE sync_report (" +
                 " id int(5) NOT NULL," +
                 "  date varchar(100) NOT NULL," +
-                "  advisor_username varchar(100) NOT NULL," +
+                "  advisor_username varchar(100) NOT NULL," + "  advisor_userid varchar(100) NOT NULL," +
                 "  sanch varchar(50) NOT NULL," +
                 "  village varchar(50) NOT NULL," +
                 "  acharya varchar(50) NOT NULL," +
@@ -113,6 +113,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put("id", data.id);
                 values.put("date", data.loggedInTime);
                 values.put("advisor_username", data.advisorName);
+                values.put("advisor_userid", data.advisor_userid);
                 values.put("sanch", data.sanchayatName);
                 values.put("village", data.villageName);
                 values.put("acharya", data.acharyaName);
@@ -152,7 +153,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean insertSyncReport(ArrayList<Report> list, SQLiteDatabase db) {
+    public boolean insertAdvisorReports(ArrayList<Report> list, SQLiteDatabase db) {
 
         db.beginTransaction();
         try {
@@ -163,6 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put("id", data.id);
                 values.put("date", data.loggedInTime);
                 values.put("advisor_username", data.advisorName);
+                values.put("advisor_userid", data.advisor_userid);
                 values.put("sanch", data.sanchayatName);
                 values.put("village", data.villageName);
                 values.put("acharya", data.acharyaName);

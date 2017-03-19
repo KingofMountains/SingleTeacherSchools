@@ -25,6 +25,13 @@
     <string name="post_advisor_report">http://webmyls.com/sts/post_all_adv_report.php</string>
     <string name="upload_images">http://webmyls.com/sts/uploader.php</string>
     <string name="upload_image_path">http://webmyls.com/sts/uploads/</string>
+    <string name="create_report">Create Report</string>
+    <string name="view_report">View Report</string>
+    <string name="new_location">New Location</string>
+    <string name="no_reports_found">No Reports Found!</string>
+    <string name="_1_of_30">1 of 30</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
 
     <string-array name="uniform">
         <item>Acharya in Uniform</item>

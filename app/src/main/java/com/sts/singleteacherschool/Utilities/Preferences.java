@@ -32,4 +32,15 @@ public class Preferences {
     }
 
 
+    public static void setUserID(Context mActivity, String name) {
+        SharedPreferences userPreference = PreferenceManager.getDefaultSharedPreferences(mActivity);
+        SharedPreferences.Editor editor = userPreference.edit();
+        editor.putString("user_id", name); // value to store
+        editor.commit();
+    }
+
+    public static String getUserID(Context mActivity) {
+        SharedPreferences userPreference = PreferenceManager.getDefaultSharedPreferences(mActivity);
+        return userPreference.getString("user_id", "");
+    }
 }

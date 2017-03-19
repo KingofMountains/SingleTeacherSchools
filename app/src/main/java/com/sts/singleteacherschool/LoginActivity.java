@@ -47,8 +47,9 @@ public class LoginActivity extends AppCompatActivity {
 
         if (checkPasswordMatch(data)) {
             Preferences.setAdvisorName(this,data.advisor_name);
+            Preferences.setUserID(this,data.user_id);
             Preferences.setAdvisorSanchayatID(this,data.sanch_id);
-            startActivity(new Intent(this, ReportFormActivity.class));
+            startActivity(new Intent(this, HomeActivity.class));
             overridePendingTransition(0, R.anim.slide_out_left);
             finish();
         } else {

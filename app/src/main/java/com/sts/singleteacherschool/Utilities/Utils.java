@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
 
@@ -22,9 +23,11 @@ import com.sts.singleteacherschool.R;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -76,6 +79,8 @@ public class Utils {
 
 
     public static void submitReport(final Context context, final Report data, final UploadListener listener) {
+
+        System.out.println("-------------------------- submit report");
 
         final Map<String, String> images = getImagesMap(data);
 
@@ -142,7 +147,6 @@ public class Utils {
     }
 
     public static int uploadFile(Context context, String sourceFileUri) {
-
 
         String fileName = sourceFileUri;
         int serverResponseCode = 0;
@@ -264,6 +268,7 @@ public class Utils {
                 Map<String, String> params = new HashMap<>();
                 params.put("date", data.loggedInTime);
                 params.put("advisor_username", data.advisorName);
+                params.put("advisor_userid", data.advisor_userid);
                 params.put("sanch", data.sanchayatName);
                 params.put("village", data.villageName);
                 params.put("acharya", data.acharyaName);
@@ -298,5 +303,26 @@ public class Utils {
 
         queue.add(stringRequest);
 
+    }
+
+    public static boolean backupDB(Context context){
+        try {
+                String currentDBPath = "/data/data/" + context.getPackageName() + "/databases/sts.sqlite";
+                String backupDBPath = "sts.sqlite";
+                File currentDB = new File(currentDBPath);
+                File backupDB = new File(Environment.getExternalStorageDirectory(), backupDBPath);
+
+                if (currentDB.exists()) {
+                    FileChannel src = new FileInputStream(currentDB).getChannel();
+                    FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                    dst.transferFrom(src, 0, src.size());
+                    src.close();
+                    dst.close();
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
