@@ -7,6 +7,7 @@ android {
         applicationId "com.sts.singleteacherschools"
         minSdkVersion 14
         targetSdkVersion 23
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"

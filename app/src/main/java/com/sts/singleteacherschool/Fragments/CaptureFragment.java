@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -121,15 +122,26 @@ public class CaptureFragment extends Fragment {
                 File outFile = new File(FILE_PATH);
                 if (!outFile.exists())
                     outFile.createNewFile();
-                FileOutputStream fos = new FileOutputStream(outFile);
-                photo = Bitmap.createScaledBitmap(photo, 600, 600, false);
-                photo.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                 ExifInterface exif = new ExifInterface(DIR_PATH + "temp.jpg");
-                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION,ExifInterface.ORIENTATION_NORMAL);
-                if(orientation ==6) {
-                    
+                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+                if (orientation == 6) {
+
                 }
-                System.out.println("orientation ----------- "+orientation);
+                FileOutputStream fos = new FileOutputStream(outFile);
+
+                if (orientation == 6) {
+                    photo = rotateImage(photo, 90);
+                }
+
+                if (photo.getWidth() < photo.getHeight()) {
+                    photo = Bitmap.createScaledBitmap(photo, 600, 800, false);
+                } else {
+                    photo = Bitmap.createScaledBitmap(photo, 800, 600, false);
+                }
+
+                photo.compress(Bitmap.CompressFormat.JPEG, 75, fos);
+
+                System.out.println("orientation ----------- " + orientation);
                 fos.flush();
                 fos.close();
                 setImageToImageView(photo);
@@ -138,6 +150,17 @@ public class CaptureFragment extends Fragment {
             }
 
         }
+    }
+
+    private Bitmap rotateImage(Bitmap src, int degree) {
+
+        // create new matrix
+        Matrix matrix = new Matrix();
+        // setup rotation degree
+        matrix.postRotate(degree);
+        Bitmap bmp = Bitmap.createBitmap(src, 0, 0, src.getWidth(), src.getHeight(), matrix, true);
+
+        return bmp;
     }
 
     private void setImageToImageView(Bitmap photo) {

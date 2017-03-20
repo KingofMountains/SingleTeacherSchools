@@ -4,11 +4,14 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sts.singleteacherschool.Data.Advisor;
@@ -22,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog loading;
     EditText txtUserId, txtPassword;
     ArrayList<Advisor> advisorList = new ArrayList<>();
+    TextView lblPoweredBy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,11 @@ public class LoginActivity extends AppCompatActivity {
 
         txtUserId = (EditText) findViewById(R.id.txtUserID);
         txtPassword = (EditText) findViewById(R.id.txtPassword);
+
+        String first = "Powered by ";
+        String next = "<font color='#0328FA'><u>WebMYLS</u></font>";
+        lblPoweredBy = (TextView ) findViewById(R.id.lblPoweredby);
+        lblPoweredBy.setText(Html.fromHtml(first + next));
 
         new GetAdvisorsTask().execute("");
     }
@@ -73,6 +82,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         return null;
+    }
+
+    public void onWebmylsClick(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse("http://www.webmyls.com")));
+
     }
 
     class GetAdvisorsTask extends AsyncTask<String, String, Integer> {

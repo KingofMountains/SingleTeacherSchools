@@ -17,7 +17,7 @@ public class ViewReportFragment extends Fragment {
     TextView lblSanchName, lblVillageName, lblAcharyaName, lblUniform, lblBlackboard, lblCorporate, lblMats, lblSolarLamp, lblCharts,
             lblSyllabus, lblLibraryBooks, lblMedicine, lblDescription, lblBoysActual, lblGirlsActual, lblBoysAttendance,
             lblGirlsAttendance, lblAdvisorName, lblTotalActual, lblTotalAttendance, lblAdvisorLastVisited,
-            lblAdvisorLastVisitedTime;
+            lblAdvisorLastVisitedTime,lblReportDate;
 
     public ViewReportFragment() {
         // Required empty public constructor
@@ -51,6 +51,7 @@ public class ViewReportFragment extends Fragment {
         }
 
         lblAdvisorName = (TextView) v.findViewById(R.id.lblAdvisorName);
+        lblReportDate = (TextView) v.findViewById(R.id.lblReportDate);
         lblSanchName= (TextView) v.findViewById(R.id.lblSanchName);
         lblVillageName = (TextView) v.findViewById(R.id.lblVillageName);
         lblAcharyaName = (TextView) v.findViewById(R.id.lblNameAcharya);
@@ -74,6 +75,7 @@ public class ViewReportFragment extends Fragment {
         lblAdvisorLastVisited = (TextView) v.findViewById(R.id.lblLastVisitAdvisor);
 
         lblAdvisorName.setText(data.advisorName);
+        lblReportDate.setText(data.loggedOutTime);
         lblSanchName.setText(data.sanchayatName);
         lblVillageName.setText(data.villageName);
         lblAcharyaName.setText(data.acharyaName);
