@@ -1,9 +1,11 @@
 package com.sts.singleteacherschool.Fragments;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,16 +17,28 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.sts.singleteacherschool.Data.Acharya;
 import com.sts.singleteacherschool.Data.DatabaseHelper;
 import com.sts.singleteacherschool.Data.Sanchayat;
 import com.sts.singleteacherschool.Data.Village;
 import com.sts.singleteacherschool.Listeners.OnFragmentInteractionListener;
+import com.sts.singleteacherschool.Network.VolleySingleton;
 import com.sts.singleteacherschool.R;
 import com.sts.singleteacherschool.Utilities.Preferences;
 import com.sts.singleteacherschool.Utilities.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +66,10 @@ public class FormFragment extends Fragment {
 
     DatabaseHelper dbHelper;
     SQLiteDatabase db;
+    RequestQueue queue;
+    LinearLayout loading;
+
+    boolean running = false;
 
     public FormFragment() {
         // Required empty public constructor
@@ -87,10 +105,71 @@ public class FormFragment extends Fragment {
         initializeEditTextViews();
         initializeSpinners();
 
+        queue = VolleySingleton.getInstance(thisActivity).getRequestQueue();
+
         dbHelper = new DatabaseHelper(thisActivity);
         db = dbHelper.getWritableDatabase();
 
-        getSanchayat();
+        loading = (LinearLayout) v.findViewById(R.id.lnrLoading);
+
+        loading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        Cursor c = db.rawQuery("select * from sanch", null);
+
+        if (Utils.hasInternet(thisActivity)) {
+
+            if (c.getCount() > 0) {
+                getSanchayat();
+            } else {
+                loading.setVisibility(View.VISIBLE);
+            }
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    running = true;
+
+                    thisActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            String url = getString(R.string.get_village_sanch_acharya);
+                            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            System.out.println("Village - Sanch - Acharya : " + response);
+                                            if (!response.equalsIgnoreCase(""))
+                                                new GetSanchVillageAcharyaTask().execute(response);
+                                        }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    running = false;
+                                    System.out.println("Village,Sanch,Acharya ==== error response");
+                                    error.printStackTrace();
+                                    Toast.makeText(thisActivity, "Slow network connection!, Please try again later.", Toast
+                                            .LENGTH_LONG).show();
+                                }
+                            });
+
+                            queue.add(stringRequest);
+
+                        }
+                    });
+
+                }
+            }).start();
+        } else {
+            getSanchayat();
+        }
+
 
         v.findViewById(R.id.btnContinue).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,11 +241,12 @@ public class FormFragment extends Fragment {
         } else if (data.medicine.equalsIgnoreCase("")) {
             Utils.showAlert(thisActivity, "Please select medicine details");
             return false;
-        } else if (data.description.equalsIgnoreCase("")) {
-            Utils.showAlert(thisActivity, "Please enter details");
-            txtDescription.setText("");
-            return false;
         }
+//        else if (data.description.equalsIgnoreCase("")) {
+//            Utils.showAlert(thisActivity, "Please enter details");
+//            txtDescription.setText("");
+//            return false;
+//        }
         return true;
     }
 
@@ -497,7 +577,133 @@ public class FormFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        db.close();
-        dbHelper.close();
+        if (!running) {
+            System.out.println("async task not running - closing db");
+            db.close();
+            dbHelper.close();
+        } else {
+            System.out.println("async task running - not closing db");
+        }
+    }
+
+    class GetSanchVillageAcharyaTask extends AsyncTask<String, String, Integer> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            running = true;
+        }
+
+        @Override
+        protected Integer doInBackground(String... params) {
+
+            System.out.println("response ------- " + params[0]);
+
+//        db.execSQL("delete from village");
+//        db.execSQL("delete from sanch");
+//        db.execSQL("delete from acharya");
+
+            try {
+                JSONObject resp = new JSONObject(params[0]);
+
+                db.beginTransaction();
+
+                if (resp.has("village")) {
+
+                    JSONArray village = resp.getJSONArray("village");
+
+                    for (int i = 0; i < village.length(); i++) {
+
+                        JSONObject obj = village.getJSONObject(i);
+                        ContentValues values = new ContentValues();
+                        values.clear();
+
+                        values.put("id", obj.getString("id"));
+                        values.put("village_name", obj.getString("village_name"));
+                        values.put("sanch_id", obj.getString("sanch_id"));
+                        values.put("live_id", obj.getString("live_id"));
+
+//                    db.insert("village", null, values);
+                        db.insertWithOnConflict("village", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+                    }
+
+                }
+
+                if (resp.has("sanch")) {
+
+                    JSONArray sanch = resp.getJSONArray("sanch");
+
+                    for (int i = 0; i < sanch.length(); i++) {
+
+                        JSONObject obj = sanch.getJSONObject(i);
+                        ContentValues values = new ContentValues();
+                        values.clear();
+
+                        values.put("id", obj.getString("id"));
+                        values.put("sanch_name", obj.getString("sanch_name"));
+                        values.put("live_id", obj.getString("live_id"));
+
+//                    db.insert("sanch", null, values);
+                        db.insertWithOnConflict("sanch", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+
+                    }
+
+                }
+
+                if (resp.has("acharya")) {
+
+                    JSONArray acharya = resp.getJSONArray("acharya");
+
+                    for (int i = 0; i < acharya.length(); i++) {
+
+                        JSONObject obj = acharya.getJSONObject(i);
+                        ContentValues values = new ContentValues();
+                        values.clear();
+
+                        values.put("id", obj.getString("id"));
+                        values.put("acharya_name", obj.getString("acharya_name"));
+                        values.put("sanch_id", obj.getString("sanch_id"));
+                        values.put("village_name", obj.getString("village_name"));
+                        values.put("village_id", obj.getString("village_id"));
+                        values.put("live_id", obj.getString("live_id"));
+
+//                    db.insert("acharya", null, values);
+                        db.insertWithOnConflict("acharya", null, values, SQLiteDatabase.CONFLICT_REPLACE);
+
+                    }
+                }
+
+                db.setTransactionSuccessful();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            } finally {
+                db.endTransaction();
+            }
+
+//
+//            try {
+//                Thread.sleep(10000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Integer integer) {
+            super.onPostExecute(integer);
+
+            running = false;
+            loading.setVisibility(View.GONE);
+
+            if (db.isOpen()) {
+                System.out.println("Db open calling calling getsanchayat7");
+                getSanchayat();
+            } else {
+                System.out.println("Db closing so not calling getsanchayat7");
+            }
+        }
     }
 }

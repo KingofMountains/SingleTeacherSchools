@@ -65,11 +65,11 @@ public class SplashActivity extends AppCompatActivity {
 
     private void continueToLogin() {
 
-        if(Utils.backupDB(this)) {
-            System.out.println("db copied");
-        } else {
-            System.out.println("db copied");
-        }
+//        if(Utils.backupDB(this)) {
+//            System.out.println("db copied");
+//        } else {
+//            System.out.println("db copied");
+//        }
 
         if (Utils.hasInternet(this)) {
 
@@ -81,12 +81,12 @@ public class SplashActivity extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            String url = getString(R.string.get_advisor_village_sanch_acharya);
+                            String url = getString(R.string.get_advisor);
                             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String response) {
-                                            new GetAllDetailsTask().execute(response);
+                                            new GetAdvisorDetailsTask().execute(response);
                                         }
                                     }, new Response.ErrorListener() {
                                 @Override
@@ -146,7 +146,7 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
-    class GetAllDetailsTask extends AsyncTask<String, String, Integer> {
+    class GetAdvisorDetailsTask extends AsyncTask<String, String, Integer> {
 
         DatabaseHelper dbHelper;
         SQLiteDatabase db;
@@ -160,9 +160,6 @@ public class SplashActivity extends AppCompatActivity {
             db = dbHelper.getWritableDatabase();
 
             db.execSQL("delete from advisor");
-            db.execSQL("delete from village");
-            db.execSQL("delete from sanch");
-            db.execSQL("delete from acharya");
 
             try {
                 JSONObject resp = new JSONObject(params[0]);
@@ -191,68 +188,6 @@ public class SplashActivity extends AppCompatActivity {
 
                 }
 
-                if (resp.has("village")) {
-
-                    JSONArray village = resp.getJSONArray("village");
-
-                    for (int i = 0; i < village.length(); i++) {
-
-                        JSONObject obj = village.getJSONObject(i);
-                        ContentValues values = new ContentValues();
-                        values.clear();
-
-                        values.put("id", obj.getString("id"));
-                        values.put("village_name", obj.getString("village_name"));
-                        values.put("sanch_id", obj.getString("sanch_id"));
-                        values.put("live_id", obj.getString("live_id"));
-
-                        db.insert("village", null, values);
-                    }
-
-                }
-
-                if (resp.has("sanch")) {
-
-                    JSONArray sanch = resp.getJSONArray("sanch");
-
-                    for (int i = 0; i < sanch.length(); i++) {
-
-                        JSONObject obj = sanch.getJSONObject(i);
-                        ContentValues values = new ContentValues();
-                        values.clear();
-
-                        values.put("id", obj.getString("id"));
-                        values.put("sanch_name", obj.getString("sanch_name"));
-                        values.put("live_id", obj.getString("live_id"));
-
-                        db.insert("sanch", null, values);
-                    }
-
-                }
-
-                if (resp.has("acharya")) {
-
-                    JSONArray acharya = resp.getJSONArray("acharya");
-
-                    for (int i = 0; i < acharya.length(); i++) {
-
-                        JSONObject obj = acharya.getJSONObject(i);
-                        ContentValues values = new ContentValues();
-                        values.clear();
-
-                        values.put("id", obj.getString("id"));
-                        values.put("acharya_name", obj.getString("acharya_name"));
-                        values.put("sanch_id", obj.getString("sanch_id"));
-                        values.put("village_name", obj.getString("village_name"));
-                        values.put("village_id", obj.getString("village_id"));
-                        values.put("live_id", obj.getString("live_id"));
-
-                        db.insert("acharya", null, values);
-                    }
-
-                }
-
-
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -273,6 +208,9 @@ public class SplashActivity extends AppCompatActivity {
     private void loadLoginActivity() {
         startActivity(new Intent(SplashActivity.this, LoginActivity.class));
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+         image_directory= null;
+         queue= null;
+         loading= null;
         finish();
     }
 }

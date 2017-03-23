@@ -38,6 +38,8 @@
     <string name="contact_phone">Contact Phone</string>
     <string name="comments">Comments</string>
     <string name="report_new_location">http://webmyls.com/sts/post_new_location_report.php</string>
+    <string name="get_advisor">http://webmyls.com/sts/get_advisor.php</string>
+    <string name="get_village_sanch_acharya">http://webmyls.com/sts/get_village_sanch_acharya.php</string>
 
     <string-array name="uniform">
         <item>Acharya in Uniform</item>
