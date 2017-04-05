@@ -96,12 +96,12 @@ public class FormFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        thisActivity = getActivity();
         init();
     }
 
     private void init() {
 
-        thisActivity = getActivity();
         initializeEditTextViews();
         initializeSpinners();
 
@@ -512,13 +512,17 @@ public class FormFragment extends Fragment {
     }
 
     private void setLastReportDetails(String villageName) {
+        data.lastVisitAdvisorName = "";
+        data.advisorLastVisitDate = "";
+
         Cursor cursor = db.rawQuery("select * from advisor_report where village = '" + villageName + "' ORDER BY id DESC LIMIT 1", null);
         while (cursor.moveToNext()) {
             data.lastVisitAdvisorName = cursor.getString(cursor.getColumnIndex("advisor_username"));
             data.advisorLastVisitDate = cursor.getString(cursor.getColumnIndex("date"));
-            txtAdvisorLastVisited.setText(data.lastVisitAdvisorName);
-            txtAdvisorLastVisitedTime.setText(data.advisorLastVisitDate);
         }
+
+        txtAdvisorLastVisited.setText(data.lastVisitAdvisorName);
+        txtAdvisorLastVisitedTime.setText(data.advisorLastVisitDate);
     }
 
     private class StudentCountWatcher implements TextWatcher {

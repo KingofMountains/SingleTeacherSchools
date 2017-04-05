@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -38,7 +39,7 @@ import java.util.Map;
 
 public class Utils {
 
-    public static AlertDialog.Builder alert;
+    //    public static AlertDialog.Builder alert;
     private static int uploadedCount = 0;
 
     public static boolean hasInternet(Context context) {
@@ -67,17 +68,38 @@ public class Utils {
 
     public static void showAlert(Activity thisActivity, String message) {
 
-        if (null == alert) {
-            alert = new AlertDialog.Builder(thisActivity);
+
+//        AlertDialog.Builder alert;
+//        if (null == alert) {
+
+//            if (null != thisActivity) {
+
+//            }
+//        }
+
+//        if (alert != null)
+//            alert.setMessage(message).show();
+
+//        if(thisActivity.isDestroyed()){
+//            System.out.println("-------------------------- destroyed ");
+//        } else {
+//            System.out.println("-------------------------- active ");
+//        }
+
+        try {
+            AlertDialog.Builder alert = new AlertDialog.Builder(thisActivity);
             alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
                 }
             });
+            alert.setMessage(message).show();
+        } catch (Exception e) {
+            System.out.println("-------------------------- Exception ");
+            e.printStackTrace();
         }
 
-        alert.setMessage(message).show();
     }
 
 
@@ -91,38 +113,38 @@ public class Utils {
 
             for (final Map.Entry<String, String> e1 : images.entrySet()) {
 
-                new Thread(new Runnable() {
-                    public void run() {
-                        int status = uploadFile(context, e1.getValue());
-                        if (status == 200) {
-                            String fileName = (new File(e1.getValue()).getName());
-                            e1.setValue(context.getString(R.string.upload_image_path) + fileName);
-                        }
+//                new Thread(new Runnable() {
+//                    public void run() {
+                int status = uploadFile(context, e1.getValue());
+                if (status == 200) {
+                    String fileName = (new File(e1.getValue()).getName());
+                    e1.setValue(context.getString(R.string.upload_image_path) + fileName);
+                }
 
-                        if (uploadedCount == images.size()) {
+                if (uploadedCount == images.size()) {
 
-                            for (final Map.Entry<String, String> e1 : images.entrySet()) {
-                                switch (e1.getKey()) {
-                                    case "one":
-                                        data.imageone = e1.getValue();
-                                        break;
-                                    case "two":
-                                        data.imagetwo = e1.getValue();
-                                        break;
-                                    case "three":
-                                        data.imagethree = e1.getValue();
-                                        break;
-                                    case "four":
-                                        data.imagefour = e1.getValue();
-                                        break;
-                                }
-                            }
-
-                            postAdvisorReport(context, data, listener);
-                            uploadedCount = 0;
+                    for (final Map.Entry<String, String> e : images.entrySet()) {
+                        switch (e.getKey()) {
+                            case "one":
+                                data.imageone = e.getValue();
+                                break;
+                            case "two":
+                                data.imagetwo = e.getValue();
+                                break;
+                            case "three":
+                                data.imagethree = e.getValue();
+                                break;
+                            case "four":
+                                data.imagefour = e.getValue();
+                                break;
                         }
                     }
-                }).start();
+
+                    postAdvisorReport(context, data, listener);
+                    uploadedCount = 0;
+                }
+//                    }
+//                }).start();
             }
 
         }
@@ -303,6 +325,7 @@ public class Utils {
 
         };
 
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(1000 * 20, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
 
     }
@@ -330,7 +353,7 @@ public class Utils {
 
     public static void submitNewLocationReport(Context context, final LocationReport data, final UploadListener listener) {
 
-       RequestQueue queue = VolleySingleton.getInstance(context).getRequestQueue();
+        RequestQueue queue = VolleySingleton.getInstance(context).getRequestQueue();
         String url = context.getResources().getString(R.string.report_new_location);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
@@ -361,11 +384,11 @@ public class Utils {
                 return params;
             }
         };
-
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(1000 * 20, 0, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
     }
 
-    public static void saveReportToPostLater(Context context,Report data) {
+    public static void saveReportToPostLater(Context context, Report data) {
         try {
             DatabaseHelper dbHelper = new DatabaseHelper(context);
             SQLiteDatabase db = dbHelper.getWritableDatabase();

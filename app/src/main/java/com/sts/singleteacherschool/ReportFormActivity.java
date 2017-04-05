@@ -80,7 +80,7 @@ public class ReportFormActivity extends AppCompatActivity implements OnFragmentI
 
                             @Override
                             public void onUploadFailed() {
-                               onNoInternetOrPostFailed("Failed to post due bad network.Report will be posted once connected to internet.");
+                                onNoInternetOrPostFailed("Failed to post due bad network.Report will be posted once connected to internet.");
                             }
                         });
                     } else {
@@ -98,12 +98,13 @@ public class ReportFormActivity extends AppCompatActivity implements OnFragmentI
     }
 
     private void onNoInternetOrPostFailed(final String msg) {
-        Utils.saveReportToPostLater(thisActivity,data);
+        data.id = (int) System.currentTimeMillis();
+        Utils.saveReportToPostLater(thisActivity, data);
         loading.dismiss();
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(thisActivity,msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(thisActivity, msg, Toast.LENGTH_SHORT).show();
             }
         });
         loadLoginActivity();

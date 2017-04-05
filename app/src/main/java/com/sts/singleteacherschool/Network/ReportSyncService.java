@@ -81,8 +81,8 @@ public class ReportSyncService extends IntentService {
                 public void onUploadCompleted() {
                     System.out.println("deleting from sync_Report --------- " + data.id);
                     db.execSQL("delete from sync_report where id = " + data.id + "");
-                    cursor.close();
-                    closeDB();
+//                    cursor.close();
+//                    closeDB();
                     Toast.makeText(ReportSyncService.this, "Report posted successfully!", Toast.LENGTH_SHORT).show();
                 }
 
