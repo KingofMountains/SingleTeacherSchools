@@ -40,61 +40,79 @@
     <string name="report_new_location">http://webmyls.com/sts/post_new_location_report.php</string>
     <string name="get_advisor">http://webmyls.com/sts/get_advisor.php</string>
     <string name="get_village_sanch_acharya">http://webmyls.com/sts/get_village_sanch_acharya.php</string>
+    <string name="acharya_in_uniform">Acharya in Uniform</string>
+    <string name="black_board">Black board</string>
+    <string name="corporate_name_board">Corporate Name Board</string>
+    <string name="mats">Mats</string>
+    <string name="solar_lamp">Solar Lamp</string>
+    <string name="charts">Charts</string>
+    <string name="syllabus">Syllabus</string>
+    <string name="library_books">Library Books</string>
+    <string name="medicine">Medicine</string>
 
     <string-array name="uniform">
-        <item>Acharya in Uniform</item>
+        <!--<item>Acharya in Uniform</item>-->
+        <item>Select</item>
         <item>Yes</item>
         <item>No</item>
     </string-array>
 
     <string-array name="blackboard">
-        <item>Black board</item>
+        <!--<item>Black board</item>-->
+        <item>Select</item>
         <item>Available</item>
         <item>Damaged</item>
         <item>No</item>
     </string-array>
 
     <string-array name="corporate">
-        <item>Corporate Name Board</item>
+        <!--<item>Corporate Name Board</item>-->
+        <item>Select</item>
         <item>Fixed</item>
         <item>No</item>
         <item>Not in Corporate</item>
     </string-array>
 
     <string-array name="mats">
-        <item>Mats</item>
+        <!--<item>Mats</item>-->
+        <item>Select</item>
         <item>Available</item>
         <item>Damaged</item>
         <item>No</item>
     </string-array>
 
     <string-array name="solar">
-        <item>Solar Lamp</item>
+        <!--<item>Solar Lamp</item>-->
+        <item>Select</item>
         <item>Available</item>
         <item>No</item>
         <item>Given for Repair</item>
     </string-array>
 
     <string-array name="charts">
-        <item>Charts</item>
+        <!--<item>Charts</item>-->
+        <item>Select</item>
         <item>Available</item>
         <item>No</item>
     </string-array>
 
     <string-array name="syllabus">
-        <item>Syllabus</item>
+        <!--<item>Syllabus</item>-->
+        <item>Select</item>
         <item>Following</item>
         <item>No</item>
     </string-array>
 
     <string-array name="library">
-        <item>Library Books</item>
+        <!--<item>Library Books</item>-->
+        <item>Select</item>
         <item>Available Using</item>
         <item>No</item>
     </string-array>
 
     <string-array name="medicine">
-        <item>Medicine</item>
+        <!--<item>Medicine</item>-->
+        <item>Select</item>
         <item>Available Giving</item>
         <item>No</item>
     </string-array>

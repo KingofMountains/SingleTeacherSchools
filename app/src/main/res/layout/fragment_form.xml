@@ -1,8 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.sts.singleteacherschool.Fragments.FormFragment">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.sts.singleteacherschool.Fragments.FormFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,9 +15,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:paddingLeft="2dp"
-            android:paddingRight="2dp"
-            android:orientation="vertical">
+            android:paddingRight="2dp">
 
 
             <LinearLayout
@@ -35,7 +35,7 @@
                     android:background="@drawable/curvedborder_white"
                     android:focusable="false"
                     android:inputType="textPersonName"
-                    tools:text="@string/login_time" />
+                    tools:text="@string/login_time"/>
 
                 <EditText
                     android:id="@+id/txtAdvisorName"
@@ -44,7 +44,7 @@
                     android:background="@drawable/curvedborder_white"
                     android:focusable="false"
                     android:inputType="textPersonName"
-                    tools:text="@string/advisor_name" />
+                    tools:text="@string/advisor_name"/>
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -54,14 +54,14 @@
                         android:id="@+id/spinnerSanchayat"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white" />
+                        android:background="@drawable/curvedborder_white"/>
 
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:src="@drawable/spinner_down"/>
 
                 </FrameLayout>
 
@@ -74,7 +74,7 @@
                         android:id="@+id/spinnerVillage"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white" />
+                        android:background="@drawable/curvedborder_white"/>
 
 
                     <ImageView
@@ -82,7 +82,7 @@
                         android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:src="@drawable/spinner_down"/>
 
                 </FrameLayout>
 
@@ -94,7 +94,7 @@
                         android:id="@+id/spinnerAcharya"
                         style="@style/formEditTextStyle"
                         android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white" />
+                        android:background="@drawable/curvedborder_white"/>
 
 
                     <ImageView
@@ -102,13 +102,12 @@
                         android:layout_height="30dp"
                         android:layout_gravity="end|center_vertical"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:src="@drawable/spinner_down"/>
 
                 </FrameLayout>
 
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -120,7 +119,7 @@
                 <TextView
                     style="@style/formTitleLabelStyle"
                     android:layout_width="match_parent"
-                    android:text="@string/students_strength_actual" />
+                    android:text="@string/students_strength_actual"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -131,7 +130,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/boys" />
+                        android:text="@string/boys"/>
 
                     <EditText
                         android:id="@+id/txtStrengthBoys"
@@ -140,7 +139,7 @@
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
                         android:maxLength="5"
-                        tools:text="10" />
+                        tools:text="10"/>
 
                 </LinearLayout>
 
@@ -153,7 +152,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/girls" />
+                        android:text="@string/girls"/>
 
                     <EditText
                         android:id="@+id/txtStrengthGirls"
@@ -162,7 +161,7 @@
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
                         android:maxLength="5"
-                        tools:text="10" />
+                        tools:text="10"/>
 
                 </LinearLayout>
 
@@ -175,7 +174,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/total" />
+                        android:text="@string/total"/>
 
                     <EditText
                         android:id="@+id/txtStrengthTotal"
@@ -183,7 +182,7 @@
                         android:layout_width="match_parent"
                         android:background="@drawable/curvedborder_orange_light"
                         android:focusable="false"
-                        tools:text="20" />
+                        tools:text="20"/>
 
                 </LinearLayout>
 
@@ -201,7 +200,7 @@
                     android:id="@+id/textView"
                     style="@style/formTitleLabelStyle"
                     android:layout_width="match_parent"
-                    android:text="@string/as_per_attendance" />
+                    android:text="@string/as_per_attendance"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -212,7 +211,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/boys" />
+                        android:text="@string/boys"/>
 
                     <EditText
                         android:id="@+id/txtAttendanceBoys"
@@ -221,7 +220,7 @@
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
                         android:maxLength="5"
-                        tools:text="10" />
+                        tools:text="10"/>
 
                 </LinearLayout>
 
@@ -234,7 +233,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/girls" />
+                        android:text="@string/girls"/>
 
                     <EditText
                         android:id="@+id/txtAttendanceGirls"
@@ -243,7 +242,7 @@
                         android:background="@drawable/curvedborder_orange_light"
                         android:inputType="number"
                         android:maxLength="5"
-                        tools:text="10" />
+                        tools:text="10"/>
 
                 </LinearLayout>
 
@@ -256,7 +255,7 @@
                     <TextView
                         style="@style/formLabelStyle"
                         android:layout_width="wrap_content"
-                        android:text="@string/total" />
+                        android:text="@string/total"/>
 
                     <EditText
                         android:id="@+id/txtAttendanceTotal"
@@ -265,7 +264,7 @@
                         android:background="@drawable/curvedborder_orange_light"
                         android:focusable="false"
                         android:inputType="textPersonName"
-                        tools:text="20" />
+                        tools:text="20"/>
 
                 </LinearLayout>
 
@@ -275,209 +274,344 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/colorPrimary"
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerUniform"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/uniform"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/acharya_in_uniform"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <Spinner
+                            android:id="@+id/spinnerUniform"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/uniform"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+
+                </LinearLayout>
 
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerBlackBoard"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/blackboard"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/black_board"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <FrameLayout
+                        <Spinner
+                            android:id="@+id/spinnerBlackBoard"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/blackboard"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerCorporate"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/corporate"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/corporate_name_board"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <FrameLayout
+                        <Spinner
+                            android:id="@+id/spinnerCorporate"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/corporate"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerMats"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/mats"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/mats"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <FrameLayout
+                        <Spinner
+                            android:id="@+id/spinnerMats"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/mats"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerSolarLamp"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/solar"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/solar_lamp"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <FrameLayout
+                        <Spinner
+                            android:id="@+id/spinnerSolarLamp"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/solar"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerCharts"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/charts"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/charts"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <FrameLayout
+                        <Spinner
+                            android:id="@+id/spinnerCharts"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/charts"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerSyllabus"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/syllabus"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/syllabus"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <FrameLayout
+                        <Spinner
+                            android:id="@+id/spinnerSyllabus"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/syllabus"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerLibrary"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/library"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/library_books"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                <FrameLayout
+                        <Spinner
+                            android:id="@+id/spinnerLibrary"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/library"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                    <Spinner
-                        android:id="@+id/spinnerMedicine"
-                        style="@style/formEditTextStyle"
-                        android:layout_width="match_parent"
-                        android:background="@drawable/curvedborder_white"
-                        android:entries="@array/medicine"
-                        tools:listitem="@android:layout/simple_spinner_item" />
-
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="end|center_vertical"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="3dp"
-                        android:src="@drawable/spinner_down" />
+                        android:text="@string/medicine"
+                        android:textColor="@color/primary_text"
+                        android:textSize="16sp"/>
 
-                </FrameLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
+                        <Spinner
+                            android:id="@+id/spinnerMedicine"
+                            style="@style/formEditTextStyle"
+                            android:layout_width="match_parent"
+                            android:background="@drawable/curvedborder_white"
+                            android:entries="@array/medicine"
+                            tools:listitem="@android:layout/simple_spinner_item"/>
+
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="end|center_vertical"
+                            android:layout_margin="3dp"
+                            android:src="@drawable/spinner_down"/>
+
+                    </FrameLayout>
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -500,7 +634,7 @@
                     android:hint="@string/enter_details_here"
                     android:inputType="text"
                     android:maxLength="255"
-                    android:padding="6dp" />
+                    android:padding="6dp"/>
 
 
                 <LinearLayout
@@ -513,22 +647,22 @@
                         style="@style/formLabelStyle"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:text="@string/advisor_last_visit_on" />
+                        android:text="@string/advisor_last_visit_on"/>
 
                     <EditText
                         android:id="@+id/txtAdvisorLastVisit"
+                        android:layout_width="match_parent"
                         android:layout_height="38dp"
-                        android:padding="4dp"
                         android:layout_marginBottom="8dp"
                         android:layout_marginTop="8dp"
-                        android:textSize="14sp"
-                        android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:maxLines="1"
-                        android:ellipsize="end"
                         android:background="@drawable/curvedborder_orange_light"
+                        android:ellipsize="end"
                         android:focusable="false"
-                        tools:text="@string/login_time" />
+                        android:maxLines="1"
+                        android:padding="4dp"
+                        android:textSize="14sp"
+                        tools:text="@string/login_time"/>
 
 
                 </LinearLayout>
@@ -542,7 +676,7 @@
                         style="@style/formLabelStyle"
                         android:layout_width="match_parent"
                         android:layout_weight="1"
-                        android:text="@string/last_visit_advisor" />
+                        android:text="@string/last_visit_advisor"/>
 
                     <EditText
                         android:id="@+id/txtLastVisitAdvisor"
@@ -552,7 +686,7 @@
                         android:background="@drawable/curvedborder_orange_light"
                         android:focusable="false"
                         android:inputType="textPersonName"
-                        tools:text="@string/advisor_name" />
+                        tools:text="@string/advisor_name"/>
 
                 </LinearLayout>
 
@@ -565,25 +699,25 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/curvedborder_white"
                 android:text="@string/continue_text"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark"/>
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:id="@+id/lnrLoading"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/dim_background"
-        android:gravity="center">
+        android:gravity="center"
+        android:visibility="gone">
 
         <ProgressBar
+            android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:id="@+id/progressBar"
             android:layout_below="@+id/imageView"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"/>
     </LinearLayout>
 
 

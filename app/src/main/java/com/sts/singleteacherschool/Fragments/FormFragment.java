@@ -439,63 +439,63 @@ public class FormFragment extends Fragment {
                     }
                     break;
                 case R.id.spinnerUniform:
-                    if (!selectedItem.equalsIgnoreCase("Acharya in Uniform")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.uniform = selectedItem;
                     } else {
                         data.uniform = "";
                     }
                     break;
                 case R.id.spinnerBlackBoard:
-                    if (!selectedItem.equalsIgnoreCase("Black board")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.blackboard = selectedItem;
                     } else {
                         data.blackboard = "";
                     }
                     break;
                 case R.id.spinnerCorporate:
-                    if (!selectedItem.equalsIgnoreCase("Corporate Name Board")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.corporate = selectedItem;
                     } else {
                         data.corporate = "";
                     }
                     break;
                 case R.id.spinnerMats:
-                    if (!selectedItem.equalsIgnoreCase("Mats")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.mats = selectedItem;
                     } else {
                         data.mats = "";
                     }
                     break;
                 case R.id.spinnerSolarLamp:
-                    if (!selectedItem.equalsIgnoreCase("Solar Lamp")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.solarlamp = selectedItem;
                     } else {
                         data.solarlamp = "";
                     }
                     break;
                 case R.id.spinnerCharts:
-                    if (!selectedItem.equalsIgnoreCase("Charts")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.charts = selectedItem;
                     } else {
                         data.charts = "";
                     }
                     break;
                 case R.id.spinnerSyllabus:
-                    if (!selectedItem.equalsIgnoreCase("Syllabus")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.syllabus = selectedItem;
                     } else {
                         data.syllabus = "";
                     }
                     break;
                 case R.id.spinnerLibrary:
-                    if (!selectedItem.equalsIgnoreCase("Library Books")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.library = selectedItem;
                     } else {
                         data.library = "";
                     }
                     break;
                 case R.id.spinnerMedicine:
-                    if (!selectedItem.equalsIgnoreCase("Medicine")) {
+                    if (!selectedItem.equalsIgnoreCase("Select")) {
                         data.medicine = selectedItem;
                     } else {
                         data.medicine = "";

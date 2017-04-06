@@ -65,11 +65,11 @@ public class SplashActivity extends AppCompatActivity {
 
     private void continueToLogin() {
 
-        if(Utils.backupDB(this)) {
-            System.out.println("db copied");
-        } else {
-            System.out.println("db copied");
-        }
+//        if(Utils.backupDB(this)) {
+//            System.out.println("db copied");
+//        } else {
+//            System.out.println("db copied");
+//        }
 
         if (Utils.hasInternet(this)) {
 
